@@ -1,0 +1,28 @@
+@import "../../style/utils";
+
+.features {
+  display: flex;
+  flex-direction: column;
+  @include responsiveDesktop {
+    flex-direction: row;
+  }
+
+  .feature-icon {
+    width: 100px;
+    border: 10px solid map-get($colors, grass);
+    border-radius: 50%;
+    padding: 1rem;
+  }
+
+  .feature-item {
+    flex: 1;
+    padding: 2.5rem;
+  }
+
+  .feature-item-title {
+    color: map-get($colors, night);
+    font-size: map-get($sizes, m);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+}

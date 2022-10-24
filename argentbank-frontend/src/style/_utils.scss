@@ -1,0 +1,33 @@
+$colors: (
+  night: #2c3e50,
+  snow: #fff,
+  grass: #42b983,
+);
+
+$sizes: (
+  min: 0.9rem,
+  base: 1rem,
+  xs: 1.1rem,
+  s: 1.2rem,
+  m: 1.25rem,
+  l: 1.5rem,
+  xl: 2.5rem,
+  max: 5rem,
+);
+
+@mixin resetMargin {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin responsiveDesktop {
+  @media screen and (min-width: 920px) {
+    @content;
+  }
+}
+
+@mixin responsiveTabloids {
+  @media screen and (min-width: 720px) {
+    @content;
+  }
+}

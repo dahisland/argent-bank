@@ -1,0 +1,48 @@
+@import "../../style/utils";
+
+.hero {
+  background-image: url("../../assets/bank-tree.jpeg");
+  background-position: 0 -50px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 300px;
+  position: relative;
+  @include responsiveDesktop {
+    height: 400px;
+    background-position: 0% 33%;
+  }
+}
+
+.hero-content {
+  position: relative;
+  top: 2rem;
+  width: 200px;
+  background: map-get($colors, snow);
+  padding: 2rem;
+  text-align: left;
+  margin: 0 auto;
+  @include responsiveDesktop {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 300px;
+    margin: 2rem;
+  }
+
+  .subtitle {
+    font-weight: bold;
+    font-size: map-get($sizes, base);
+    margin: 0;
+    @include responsiveDesktop {
+      font-size: map-get($sizes, l);
+    }
+  }
+
+  .text {
+    margin-bottom: 0;
+    font-size: map-get($sizes, min);
+    @include responsiveDesktop {
+      font-size: map-get($sizes, s);
+    }
+  }
+}
