@@ -1,0 +1,10 @@
+@import "../../style/utils";
+
+.sign-in-content {
+  box-sizing: border-box;
+  background-color: map-get($colors, ice);
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+}

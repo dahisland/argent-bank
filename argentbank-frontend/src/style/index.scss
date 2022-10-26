@@ -1,5 +1,22 @@
 @import "./reset";
+@import "../pages/signIn/signIn";
+@import "../pages/signUp/signUp";
+@import "../pages/user/user";
+
+@import "../components/btnSignIn/btnSignIn";
+@import "../components/btnSignUp/btnSignUp";
+@import "../components/btnEdit/btnEdit";
+@import "../components/btnTransaction/btnTransaction";
+
 @import "../components/mainNav/mainNav";
 @import "../components/hero/hero";
 @import "../components/features/features";
+
+@import "../components/signInForm/signInForm";
+
+@import "../components/signUpForm/signUpForm";
+
+@import "../components/welcomeHeader/welcomeHeader";
+@import "../components/accounts/accounts";
+
 @import "../components/footer/footer";

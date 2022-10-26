@@ -1,0 +1,9 @@
+@import "../../style/utils";
+
+.header {
+  color: map-get($colors, ice);
+  margin-bottom: 2rem;
+  h1 {
+    @include fontAvenirBlack;
+  }
+}

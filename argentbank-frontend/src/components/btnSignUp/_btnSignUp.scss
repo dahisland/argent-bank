@@ -1,0 +1,14 @@
+@import "../../style/utils";
+
+.sign-up-button {
+  display: block;
+  cursor: pointer;
+  text-decoration: underline;
+  width: 100%;
+  padding: 8px;
+  font-size: map-get($sizes, xs);
+  font-weight: bold;
+  border-color: map-get($colors, grass);
+  background-color: map-get($colors, grass);
+  color: map-get($colors, ice);
+}

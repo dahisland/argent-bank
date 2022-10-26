@@ -31,3 +31,33 @@ export const featuresData = [
       "We use top of the line encryption to make sure your data and money is always safe.",
   },
 ];
+
+export const signInInputData = [
+  { id: "username", type: "text", label: "Username" },
+  { id: "current-password", type: "password", label: "Password" },
+];
+
+export const signUpInputData = [
+  { id: "firstname", type: "text", label: "Firstname" },
+  { id: "lastname", type: "text", label: "Lastname" },
+  { id: "usermail", type: "email", label: "Email" },
+  { id: "current-password", type: "password", label: "Choose password" },
+];
+
+export const userAccountsData = [
+  {
+    title: "Argent Bank Checking (x8349)",
+    amount: "$2,082.79",
+    description: "Available Balance",
+  },
+  {
+    title: "Argent Bank Savings (x6712)",
+    amount: "$10,928.42",
+    description: "Available Balance",
+  },
+  {
+    title: "Argent Bank Credit Card (x8349)",
+    amount: "$184.30",
+    description: "Current Balance",
+  },
+];

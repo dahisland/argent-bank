@@ -20,6 +20,7 @@
   }
 
   .feature-item-title {
+    @include fontAvenirBlack;
     color: map-get($colors, night);
     font-size: map-get($sizes, m);
     font-weight: bold;

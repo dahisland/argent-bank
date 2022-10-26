@@ -1,11 +1,33 @@
+@font-face {
+  font-family: Avenir;
+  src: url("./font/AvenirLTStd-Roman.otf");
+}
+
+@font-face {
+  font-family: AvenirBlack;
+  src: url("./font/AvenirLTStd-Black.otf");
+}
+
+@mixin fontAvenir {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+@mixin fontAvenirBlack {
+  font-family: AvenirBlack, Helvetica, Arial, sans-serif;
+}
+
 $colors: (
   night: #2c3e50,
-  snow: #fff,
-  grass: #42b983,
+  bgDark: #12002b,
+  ice: #fff,
+
+  lightmouse: #ccc,
+
+  grass: #00bc77,
 );
 
 $sizes: (
-  min: 0.9rem,
+  mini: 0.9rem,
   base: 1rem,
   xs: 1.1rem,
   s: 1.2rem,

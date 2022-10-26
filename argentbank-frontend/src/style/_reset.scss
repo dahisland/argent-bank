@@ -1,12 +1,7 @@
 @import "./utils";
 
-@font-face {
-  font-family: Avenir;
-  src: url("./font/AvenirLTStd-Roman.otf");
-}
-
 html {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  @include fontAvenir;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -20,6 +15,30 @@ body {
   min-height: 100vh;
 }
 
+h1 {
+  @include fontAvenirBlack;
+}
+
+// Place footer in bottom page
+
+.current-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .main {
+    flex: 1;
+  }
+}
+
+// Dark backgrounds
+
+.bg-dark {
+  background-color: map-get($colors, bgDark);
+}
+
+// hide informations only intended for screen readers
+
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -32,4 +51,22 @@ body {
   position: absolute !important;
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
+}
+
+// Global forms
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.input-wrapper label {
+  font-weight: bold;
+}
+
+.input-wrapper input {
+  padding: 5px;
+  font-size: 1.2rem;
 }

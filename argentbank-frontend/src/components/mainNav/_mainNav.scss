@@ -30,15 +30,18 @@
   .main-nav-item {
     text-decoration: none;
     margin-right: 0.5rem;
-  }
-
-  .main-nav-item:hover {
-    text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .main-nav-logo {
     display: flex;
     align-items: center;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   .main-nav-logo-image {
