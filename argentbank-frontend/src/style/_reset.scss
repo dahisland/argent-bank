@@ -70,3 +70,23 @@ h1 {
   padding: 5px;
   font-size: 1.2rem;
 }
+
+.input-message {
+  height: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  p {
+    color: map-get($colors, grass);
+    font-size: map-get($sizes, xs);
+  }
+}
+
+.input-message--error {
+  height: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  p {
+    color: map-get($colors, blood);
+    font-size: map-get($sizes, xs);
+  }
+}

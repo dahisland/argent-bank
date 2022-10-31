@@ -1,5 +1,18 @@
 @import "../../style/utils";
 
+.sign-in-button {
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: map-get($colors, grass);
+  background-color: map-get($colors, grass);
+  color: map-get($colors, ice);
+}
+
 .input-remember {
   display: flex;
 }

@@ -1,11 +1,14 @@
 @import "../../style/utils";
 
-.input-message {
-  height: 1rem;
-  margin-bottom: 1rem;
-  text-align: center;
-  p {
-    color: map-get($colors, grass);
-    font-size: map-get($sizes, xs);
-  }
+.sign-up-button {
+  display: block;
+  cursor: pointer;
+  text-decoration: underline;
+  width: 100%;
+  padding: 8px;
+  font-size: map-get($sizes, xs);
+  font-weight: bold;
+  border-color: map-get($colors, grass);
+  background-color: map-get($colors, grass);
+  color: map-get($colors, ice);
 }
