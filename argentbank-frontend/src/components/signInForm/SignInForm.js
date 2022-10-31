@@ -29,7 +29,7 @@ const SignInForm = () => {
       if (apiRes.status === 200) {
         setLoginSuccess(true);
         setTimeout(() => {
-          navigate("/user");
+          navigate("/profile");
         }, 500);
       } else {
         // Request status 400 : post request failed because of wrong user username or password.
@@ -44,7 +44,7 @@ const SignInForm = () => {
   return (
     <form>
       {signInInputData.map((item) => (
-        <div className="input-wrapper" key={"signin" + item.id}>
+        <div className="input-wrapper" key={"login" + item.id}>
           <label htmlFor={item.id}>{item.label}</label>
           <input
             type={item.type}

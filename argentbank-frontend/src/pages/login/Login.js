@@ -7,11 +7,11 @@ import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import SignInForm from "../../components/signInForm/SignInForm";
 import Footer from "../../components/footer/Footer";
 
-const SignIn = () => {
+const Login = () => {
   return (
     <div className="current-page">
       <MainNav
-        pathNavlink1="/signin"
+        pathNavlink1="/login"
         txtNavlink1="Sign In"
         pathNavlink2="/signup"
         iconNavlink2={faUserPlus}
@@ -29,4 +29,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Login;

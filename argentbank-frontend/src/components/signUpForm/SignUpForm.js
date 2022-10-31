@@ -43,7 +43,7 @@ const SignUpForm = () => {
 
   function navToSignInPage(e) {
     e.preventDefault();
-    navigate("/signin");
+    navigate("/login");
   }
 
   return (

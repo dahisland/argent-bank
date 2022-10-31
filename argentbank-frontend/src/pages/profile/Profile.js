@@ -5,11 +5,11 @@ import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import WelcomeHeader from "../../components/welcomeHeader/WelcomeHeader";
 import Accounts from "../../components/accounts/Accounts";
 
-const User = () => {
+const Profile = () => {
   return (
     <div className="current-page">
       <MainNav
-        pathNavlink1="/user"
+        pathNavlink1="/profile"
         txtNavlink1={"Tony"}
         pathNavlink2="/"
         iconNavlink2={faSignOutAlt}
@@ -24,4 +24,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Profile;

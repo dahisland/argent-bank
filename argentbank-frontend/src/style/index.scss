@@ -1,7 +1,8 @@
 @import "./reset";
-@import "../pages/signIn/signIn";
+@import "../pages/login/login";
 @import "../pages/signUp/signUp";
-@import "../pages/user/user";
+@import "../pages/profile/profile";
+@import "../pages/error404/error404";
 
 @import "../components/btnEdit/btnEdit";
 @import "../components/btnTransaction/btnTransaction";

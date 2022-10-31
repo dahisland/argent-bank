@@ -9,7 +9,7 @@ const Homepage = () => {
   return (
     <div>
       <MainNav
-        pathNavlink1="/signin"
+        pathNavlink1="/login"
         txtNavlink1="Sign In"
         pathNavlink2="/signup"
         iconNavlink2={faUserPlus}
