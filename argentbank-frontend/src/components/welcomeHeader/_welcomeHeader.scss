@@ -6,4 +6,33 @@
   h1 {
     @include fontAvenirBlack;
   }
+  .profile-username {
+    @include fontAvenirBlack;
+    font-size: 2em;
+    @include resetMargin;
+    margin-top: -1rem;
+  }
+}
+
+.header--edit {
+  color: map-get($colors, night);
+  margin-bottom: 2rem;
+  h1 {
+    @include fontAvenir;
+  }
+}
+
+.edit-button {
+  border-color: map-get($colors, grass);
+  background-color: map-get($colors, grass);
+  color: map-get($colors, ice);
+  font-weight: bold;
+  padding: 10px;
+}
+
+.edit-messageSuccess {
+  height: 1rem;
+  color: lighten(map-get($colors, grass), 10%);
+  font-size: map-get($sizes, mini);
+  font-style: italic;
 }

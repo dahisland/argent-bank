@@ -6,6 +6,8 @@ import {
   signinInputOnChange,
   signinCheckboxOnChange,
 } from "./signinInputOnChange";
+import { setLoginData } from "../../app/reduxSlices/loginSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const SignInForm = () => {
   let [inputUsernameValue, setInputUsernameValue] = useState("");
@@ -13,33 +15,40 @@ const SignInForm = () => {
   let [inputCheckboxValue, setInputCheckboxValue] = useState(false);
 
   let [submitMessage, setSubmitMessage] = useState("");
-  let [loginSuccess, setLoginSuccess] = useState(false);
 
   let navigate = useNavigate();
+  const dispatch = useDispatch();
 
   async function submitForm(e) {
     e.preventDefault();
-    // Watch if "remember me" is checked
-    console.log(inputCheckboxValue);
     // Call api post request
-    let apiRes = await loginPostRequest(inputUsernameValue, inputPasswordValue);
+    let apiRes = await loginPostRequest(
+      inputUsernameValue,
+      inputPasswordValue,
+      inputCheckboxValue
+    );
     // if request status is 200 or 400, some data will be received from the api
     if (apiRes.status) {
       // Request status 200 : post request success.
       if (apiRes.status === 200) {
-        setLoginSuccess(true);
+        console.clear();
+        const loginData = apiRes;
+        console.log(loginData);
+        // Set loginData in store
+        dispatch(setLoginData(loginData));
+        // Navigate to page profile
         setTimeout(() => {
           navigate("/profile");
         }, 500);
-      } else {
-        // Request status 400 : post request failed because of wrong user username or password.
-        setLoginSuccess(false);
       }
     }
     // If request fails with a 400 status, submit message will be the message received from data api
     // If request fails with an other status, submit message will be the catch error.message
     setSubmitMessage(apiRes.message);
   }
+
+  const loginData = useSelector((state) => state.login);
+  const loginSuccess = loginData.connected;
 
   return (
     <form>

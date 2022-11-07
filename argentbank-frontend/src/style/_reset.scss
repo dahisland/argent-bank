@@ -31,10 +31,28 @@ h1 {
   }
 }
 
-// Dark backgrounds
+// backgrounds
 
 .bg-dark {
   background-color: map-get($colors, bgDark);
+}
+.bg-grey {
+  background-color: map-get($colors, bgGrey);
+}
+.bg-green {
+  background-color: map-get($colors, grass);
+}
+.bg-purple {
+  background-color: map-get($colors, cassis);
+}
+
+// Borders
+
+.border-green {
+  border-color: map-get($colors, grass);
+}
+.border-purple {
+  border-color: map-get($colors, cassis);
 }
 
 // hide informations only intended for screen readers

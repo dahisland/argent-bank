@@ -10,6 +10,7 @@ const MainNav = ({
   pathNavlink2,
   iconNavlink2,
   txtNavlink2,
+  eventNavlink2,
 }) => {
   return (
     <nav className="main-nav">
@@ -41,6 +42,7 @@ const MainNav = ({
           }
           end
           to={pathNavlink2}
+          onClick={eventNavlink2}
         >
           <FontAwesomeIcon icon={iconNavlink2} /> {txtNavlink2}
         </NavLink>

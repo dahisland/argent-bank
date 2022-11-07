@@ -1,9 +1,0 @@
-@import "../../style/utils";
-
-.edit-button {
-  border-color: map-get($colors, grass);
-  background-color: map-get($colors, grass);
-  color: map-get($colors, ice);
-  font-weight: bold;
-  padding: 10px;
-}

@@ -1,0 +1,22 @@
+@import "../../style/utils";
+
+.form-editProfile {
+  input {
+    width: 160px;
+    margin: 0.3rem 1rem;
+    padding: 0.6rem;
+    border-radius: 5px;
+    border: 2.5px solid darken(map-get($colors, lightmouse), 8%);
+    color: map-get($colors, lightmouse);
+    font-weight: bold;
+  }
+  button {
+    margin: 0.5rem 1rem;
+    width: 100px;
+    padding: 5px;
+    color: map-get($colors, cassis);
+    border-radius: 5px;
+    border: 2.5px solid lighten(map-get($colors, cassis), 20%);
+    font-weight: bold;
+  }
+}

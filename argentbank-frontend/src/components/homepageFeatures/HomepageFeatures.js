@@ -1,7 +1,7 @@
 import React from "react";
 import { featuresData } from "../../data/staticData";
 
-const Features = () => {
+const HomepageFeatures = () => {
   return (
     <section className="features">
       <h2 className="sr-only">Features</h2>
@@ -16,4 +16,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default HomepageFeatures;

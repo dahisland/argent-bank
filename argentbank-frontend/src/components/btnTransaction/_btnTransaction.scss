@@ -7,8 +7,7 @@
   font-size: map-get($sizes, xs);
   font-weight: bold;
   margin-top: 1rem;
-  border-color: map-get($colors, grass);
-  background-color: map-get($colors, grass);
+  border-radius: 5px;
   color: map-get($colors, ice);
   @include responsiveTabloids {
     width: 200px;
