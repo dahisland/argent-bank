@@ -34,14 +34,14 @@ export const featuresData = [
 
 export const signInInputData = [
   { id: "username", type: "text", label: "Username" },
-  { id: "current-password", type: "password", label: "Password" },
+  { id: "password", type: "password", label: "Password" },
 ];
 
 export const signUpInputData = [
   { id: "firstname", type: "text", label: "Firstname" },
   { id: "lastname", type: "text", label: "Lastname" },
   { id: "usermail", type: "email", label: "Email" },
-  { id: "current-password", type: "password", label: "Choose password" },
+  { id: "userpassword", type: "password", label: "Choose password" },
 ];
 
 export const userAccountsData = [

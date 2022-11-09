@@ -9,25 +9,21 @@ const loginEndpoint = "/user/login";
 const signupEndpoint = "/user/signup";
 const profileEndpoint = "/user/profile";
 
-export const loginPostRequest = (
-  userEmail,
-  userPassword,
-  inputCheckboxValue
-) => {
+// LOGIN POST API REQUEST
+
+export const loginPostRequest = (submitdata) => {
   return axios
     .post(baseApiURL + loginEndpoint, {
-      email: userEmail,
-      password: userPassword,
+      email: submitdata.username,
+      password: submitdata.password,
     })
     .then(function (res) {
-      const loginData = new modelLoginData(res.data, inputCheckboxValue);
+      const loginData = new modelLoginData(res.data, submitdata.rememberMe);
       return loginData.formatLoginData();
     })
     .catch(function (err) {
-      if (err.response) {
-        if (err.response.data.status === 400) {
-          return err.response.data;
-        }
+      if (err.response && err.response.data.status === 400) {
+        return err.response.data;
       } else {
         console.log(err.message);
         return err;
@@ -35,34 +31,31 @@ export const loginPostRequest = (
     });
 };
 
-export const signupPostRequest = (
-  userFirstname,
-  userLastname,
-  userEmail,
-  userPassword
-) => {
+// SIGNUP POST API REQUEST
+
+export const signupPostRequest = (submitdata) => {
   return axios
     .post(baseApiURL + signupEndpoint, {
-      email: userEmail,
-      password: userPassword,
-      firstName: userFirstname,
-      lastName: userLastname,
+      email: submitdata.usermail,
+      password: submitdata.userpassword,
+      firstName: submitdata.firstname,
+      lastName: submitdata.lastname,
     })
     .then(function (res) {
       const signupData = new modelSignupData(res.data);
       return signupData.formatSignupData();
     })
     .catch(function (err) {
-      if (err.response) {
-        if (err.response.data.status === 400) {
-          return err.response.data;
-        }
+      if (err.response && err.response.data.status === 400) {
+        return err.response.data;
       } else {
         console.log(err.message);
         return err;
       }
     });
 };
+
+// PROFILE POST API REQUEST
 
 export const profilePostRequest = (token) => {
   return axios
@@ -80,10 +73,8 @@ export const profilePostRequest = (token) => {
       return profileData.formatProfileData();
     })
     .catch(function (err) {
-      if (err.response) {
-        if (err.response.data.status === 401) {
-          return err.response.data;
-        }
+      if (err.response && err.response.data.status === 401) {
+        return err.response.data;
       } else {
         console.log(err.message);
         return err;
@@ -91,11 +82,16 @@ export const profilePostRequest = (token) => {
     });
 };
 
-export const profilePutRequest = (token, newFirstname, newLastname) => {
+// PROFILE PUT API REQUEST
+
+export const profilePutRequest = (token, submitData) => {
   return axios
     .put(
       baseApiURL + profileEndpoint,
-      { firstName: newFirstname, lastName: newLastname },
+      {
+        firstName: submitData.userFirstname,
+        lastName: submitData.userLastname,
+      },
       {
         headers: {
           Authorization: "Bearer" + token,
@@ -107,10 +103,8 @@ export const profilePutRequest = (token, newFirstname, newLastname) => {
       return updatedProfileData.formatProfileData();
     })
     .catch(function (err) {
-      if (err.response) {
-        if (err.response.data.status === 401) {
-          return err.response.data;
-        }
+      if (err.response && err.response.data.status === 401) {
+        return err.response.data;
       } else {
         console.log(err.message);
         return err;

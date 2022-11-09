@@ -1,44 +1,26 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 import { useNavigate } from "react-router-dom";
 import { signUpInputData } from "../../data/staticData";
 import { signupPostRequest } from "../../service/apiRequests";
-import { signupInputOnChange } from "./signupInputOnChange";
-import { regexMail, regexText, regexPassword } from "./signupRegex";
 
 const SignUpForm = () => {
-  let [inputFirstnameValue, setInputFirstnameValue] = useState("");
-  let [inputLastnameValue, setInputLastnameValue] = useState("");
-  let [inputEmailValue, setInputEmailValue] = useState("");
-  let [inputPasswordValue, setInputPasswordValue] = useState("");
-  let [signupSuccess, setSignupSuccess] = useState(false);
-  let [submitMessage, setSubmitMessage] = useState("");
+  const [signupSuccess, setSignupSuccess] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  let navigate = useNavigate();
-
-  async function submitForm(e) {
-    e.preventDefault();
-    if (
-      inputFirstnameValue.match(regexText) &&
-      inputLastnameValue.match(regexText) &&
-      inputPasswordValue.match(regexPassword) &&
-      inputEmailValue.match(regexMail)
-    ) {
-      let apiRes = await signupPostRequest(
-        inputFirstnameValue,
-        inputLastnameValue,
-        inputEmailValue,
-        inputPasswordValue
-      );
-      if (apiRes.status) {
-        apiRes.status === 200
-          ? setSignupSuccess(true)
-          : setSignupSuccess(false);
-      }
-      setSubmitMessage(apiRes.message);
-    } else {
-      setSignupSuccess(false);
-      setSubmitMessage("Some fields are invalid");
+  async function submitSignupForm(data) {
+    let apiRes = await signupPostRequest(data);
+    if (apiRes.status) {
+      apiRes.status === 200 ? setSignupSuccess(true) : setSignupSuccess(false);
     }
+    setSubmitMessage(apiRes.message);
   }
 
   function navToSignInPage(e) {
@@ -47,7 +29,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(submitSignupForm)}>
       {signUpInputData.map((item) => (
         <div className="input-wrapper" key={"signup" + item.id}>
           <label htmlFor={item.id}>{item.label}</label>
@@ -55,31 +37,26 @@ const SignUpForm = () => {
             type={item.type}
             id={item.id}
             name={item.id}
+            {...register(item.id, { required: "This field is required" })}
             autoComplete={item.id}
-            onChange={(e) =>
-              signupInputOnChange(
-                e,
-                item.id,
-                setInputFirstnameValue,
-                setInputLastnameValue,
-                setInputEmailValue,
-                setInputPasswordValue
-              )
-            }
           />
+          <p className="input-error-message">
+            <ErrorMessage errors={errors} name={item.id} />
+          </p>
         </div>
       ))}
 
-      <div className={signupSuccess ? "input-message" : "input-message--error"}>
-        <p>{submitMessage}</p>
-      </div>
+      <p className={signupSuccess ? "submit-message" : "submit-message--error"}>
+        {submitMessage}
+      </p>
 
-      <button
-        className="sign-up-button"
-        onClick={signupSuccess ? navToSignInPage : submitForm}
-      >
-        {signupSuccess ? "Log to account" : "Sign Up"}
-      </button>
+      {signupSuccess === false ? (
+        <button className="sign-up-button">Sign Up</button>
+      ) : (
+        <button className="sign-up-button" onClick={navToSignInPage}>
+          Log to account
+        </button>
+      )}
     </form>
   );
 };

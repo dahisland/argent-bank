@@ -15,5 +15,4 @@ export const initProfileData = {
   id: "",
   lastName: "",
   updatedAt: "",
-  // isEdited: false,
 };

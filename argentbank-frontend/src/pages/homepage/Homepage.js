@@ -6,7 +6,10 @@ import { faUserPlus, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../../components/footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoginData } from "../../app/reduxSlices/loginSlice";
-import { setProfileData } from "../../app/reduxSlices/profileSlice";
+import {
+  setProfileData,
+  editProfileStatus,
+} from "../../app/reduxSlices/profileSlice";
 import { initLoginData, initProfileData } from "../../app/initialStoreData";
 
 const Homepage = () => {
@@ -18,6 +21,7 @@ const Homepage = () => {
   function resetStore() {
     console.clear();
     dispatch(setLoginData(initLoginData));
+    dispatch(editProfileStatus(false));
     dispatch(setProfileData(initProfileData));
   }
 

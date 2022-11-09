@@ -10,7 +10,10 @@ import Accounts from "../../components/accounts/Accounts";
 
 import { profilePostRequest } from "../../service/apiRequests";
 import { setLoginData } from "../../app/reduxSlices/loginSlice";
-import { setProfileData } from "../../app/reduxSlices/profileSlice";
+import {
+  setProfileData,
+  editProfileStatus,
+} from "../../app/reduxSlices/profileSlice";
 import { initLoginData, initProfileData } from "../../app/initialStoreData";
 
 const Profile = () => {
@@ -19,10 +22,15 @@ const Profile = () => {
   const loginData = useSelector((state) => state.login);
   const profileData = useSelector((state) => state.profile);
 
+  function resetStore() {
+    console.clear();
+    dispatch(setLoginData(initLoginData));
+    dispatch(editProfileStatus(false));
+    dispatch(setProfileData(initProfileData));
+  }
+
   useEffect(() => {
-    if (loginData.connected === false) {
-      navigate("/");
-    } else {
+    if (loginData.connected === true) {
       async function getProfileData() {
         console.clear();
         let apiRes = await profilePostRequest(loginData.token);
@@ -31,14 +39,11 @@ const Profile = () => {
       }
       getProfileData();
       //   console.clear();
+    } else {
+      resetStore();
+      navigate("/");
     }
   });
-
-  function resetStore() {
-    console.clear();
-    dispatch(setLoginData(initLoginData));
-    dispatch(setProfileData(initProfileData));
-  }
 
   return (
     <div className="current-page">

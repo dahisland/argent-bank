@@ -89,22 +89,27 @@ h1 {
   font-size: 1.2rem;
 }
 
-.input-message {
+.input-error-message {
   height: 1rem;
-  margin-bottom: 1rem;
-  text-align: center;
-  p {
-    color: map-get($colors, grass);
-    font-size: map-get($sizes, xs);
-  }
+  margin: 0;
+  margin-top: 0.2rem;
+  font-style: italic;
+  color: map-get($colors, blood);
+  font-size: map-get($sizes, mini);
 }
 
-.input-message--error {
-  height: 1rem;
+.submit-message {
+  min-height: 1rem;
   margin-bottom: 1rem;
   text-align: center;
-  p {
-    color: map-get($colors, blood);
-    font-size: map-get($sizes, xs);
-  }
+  color: map-get($colors, grass);
+  font-size: map-get($sizes, xs);
+}
+
+.submit-message--error {
+  min-height: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: map-get($colors, blood);
+  font-size: map-get($sizes, xs);
 }

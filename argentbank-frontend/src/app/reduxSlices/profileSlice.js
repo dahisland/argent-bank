@@ -15,7 +15,7 @@ export const profileSlice = createSlice({
       state.lastName = action.payload.lastName;
       state.updatedAt = action.payload.updatedAt;
     },
-    editProfileData: (state, action) => {
+    editProfileStatus: (state, action) => {
       return {
         ...state,
         isEdited: action.payload,
@@ -31,6 +31,6 @@ export const profileSlice = createSlice({
   },
 });
 
-export const { setProfileData, editProfileData, updateProfileData } =
+export const { setProfileData, editProfileStatus, updateProfileData } =
   profileSlice.actions;
 export default profileSlice.reducer;
