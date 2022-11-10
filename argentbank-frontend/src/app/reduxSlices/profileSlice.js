@@ -1,36 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initProfileData } from "../initialStoreData";
+import { initStateProfile } from "../initialStoreData";
 
 export const profileSlice = createSlice({
   name: "profile",
-  initialState: initProfileData,
+  initialState: initStateProfile,
   reducers: {
-    setProfileData: (state, action) => {
-      state.status = action.payload.status;
-      state.message = action.payload.message;
-      state.createdAt = action.payload.createdAt;
-      state.email = action.payload.email;
-      state.firstName = action.payload.firstName;
-      state.id = action.payload.id;
-      state.lastName = action.payload.lastName;
-      state.updatedAt = action.payload.updatedAt;
+    getProfileData: (state, action) => {
+      state.profileData = action.payload;
+    },
+    errorRequestProfileData: (state, action) => {
+      state.profileData = action.payload;
     },
     editProfileStatus: (state, action) => {
-      return {
-        ...state,
-        isEdited: action.payload,
-      };
+      state.isEdited = action.payload;
     },
     updateProfileData: (state, action) => {
-      return {
-        ...state,
-        firstName: action.payload[0],
-        lastName: action.payload[1],
-      };
+      state.profileData = action.payload;
+    },
+    resetProfileData: (state, action) => {
+      state.profileData = action.payload;
+      if (state.isEdited) {
+        state.isEdited = false;
+      }
     },
   },
 });
 
-export const { setProfileData, editProfileStatus, updateProfileData } =
-  profileSlice.actions;
+export const {
+  getProfileData,
+  errorRequestProfileData,
+  editProfileStatus,
+  updateProfileData,
+  resetProfileData,
+} = profileSlice.actions;
 export default profileSlice.reducer;

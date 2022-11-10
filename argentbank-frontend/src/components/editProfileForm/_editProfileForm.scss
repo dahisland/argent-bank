@@ -21,10 +21,17 @@
   }
 }
 
-.edit-messageSuccess {
+.edit-message--success {
   height: 1rem;
   margin: 0.1rem;
   color: lighten(map-get($colors, grass), 5%);
+  font-size: map-get($sizes, mini);
+  font-style: italic;
+}
+.edit-message--fail {
+  height: 1rem;
+  margin: 0.1rem;
+  color: lighten(map-get($colors, blood), 5%);
   font-size: map-get($sizes, mini);
   font-style: italic;
 }

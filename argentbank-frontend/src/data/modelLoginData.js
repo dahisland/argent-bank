@@ -1,19 +1,16 @@
 export class modelLoginData {
-  constructor(loginData, inputCheckboxValue) {
-    this.status = parseInt(loginData.status);
-    this.message = String(loginData.message);
-    this.connected = true;
+  constructor(data, inputCheckboxValue) {
+    this.status = data.status;
     this.remember = inputCheckboxValue === true ? true : false;
-    this.token = String(loginData.body.token);
+    this.token = data.body.token;
+    this.message = data.message;
   }
-
   formatLoginData() {
     return {
       status: this.status,
-      message: this.message,
-      connected: this.connected,
       remember: this.remember,
       token: this.token,
+      message: this.message,
     };
   }
 }

@@ -7,43 +7,25 @@ import Footer from "../../components/footer/Footer";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import WelcomeHeader from "../../components/welcomeHeader/WelcomeHeader";
 import Accounts from "../../components/accounts/Accounts";
-
-import { profilePostRequest } from "../../service/apiRequests";
-import { setLoginData } from "../../app/reduxSlices/loginSlice";
-import {
-  setProfileData,
-  editProfileStatus,
-} from "../../app/reduxSlices/profileSlice";
-import { initLoginData, initProfileData } from "../../app/initialStoreData";
+import { resetStore } from "../../app/reduxActions/logoutAction";
+import { profilePostRequest } from "../../app/reduxActions/getProfileAction";
+import { loginConnected } from "../../app/reduxActions/loginConnexion";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const loginData = useSelector((state) => state.login);
-  const profileData = useSelector((state) => state.profile);
-
-  function resetStore() {
-    console.clear();
-    dispatch(setLoginData(initLoginData));
-    dispatch(editProfileStatus(false));
-    dispatch(setProfileData(initProfileData));
-  }
+  const { loginData, connexion } = useSelector((state) => state.login);
+  const { profileData, isEdited } = useSelector((state) => state.profile);
 
   useEffect(() => {
-    if (loginData.connected === true) {
-      async function getProfileData() {
-        console.clear();
-        let apiRes = await profilePostRequest(loginData.token);
-        console.log(apiRes);
-        dispatch(setProfileData(apiRes));
-      }
-      getProfileData();
-      //   console.clear();
+    if (connexion === "on load" || connexion === "connected") {
+      profilePostRequest(loginData.token, dispatch);
+      loginConnected(dispatch);
     } else {
-      resetStore();
       navigate("/");
     }
-  });
+    // eslint-disable-next-line
+  }, [dispatch]);
 
   return (
     <div className="current-page">
@@ -53,9 +35,9 @@ const Profile = () => {
         pathNavlink2="/"
         iconNavlink2={faSignOutAlt}
         txtNavlink2="Sign Out"
-        eventNavlink2={resetStore}
+        eventNavlink2={() => resetStore(dispatch)}
       />
-      <main className={profileData.isEdited ? "main bg-grey" : "main bg-dark"}>
+      <main className={isEdited ? "main bg-grey" : "main bg-dark"}>
         <WelcomeHeader />
         <Accounts />
       </main>

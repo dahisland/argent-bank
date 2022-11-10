@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  editProfileStatus,
-  updateProfileData,
-} from "../../app/reduxSlices/profileSlice";
-
-import { profilePutRequest } from "../../service/apiRequests";
+import { profileOutEdit } from "../../app/reduxActions/editProfileStatusAction";
+import { profilePutRequest } from "../../app/reduxActions/updateProfileAction";
 
 const EditProfileForm = () => {
-  const loginData = useSelector((state) => state.login);
-  const profileData = useSelector((state) => state.profile);
-  const [msgEditSuccess, setMsgEditSuccess] = useState("");
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
+
+  const { loginData } = useSelector((state) => state.login);
+  const { profileData } = useSelector((state) => state.profile);
+  const [messageInfoEdit, setMessageInfoEdit] = useState("");
 
   const inputProfileData = [
     { id: "userFirstname", value: profileData.firstName },
@@ -25,17 +22,25 @@ const EditProfileForm = () => {
       data.userFirstname !== profileData.firstName ||
       data.userLastname !== profileData.lastName
     ) {
-      let apiRes = await profilePutRequest(loginData.token, data);
-      setMsgEditSuccess(apiRes.message);
-      dispatch(updateProfileData(data.userFirstname, data.userLastname));
+      if (profileData.apiError) {
+        setMessageInfoEdit(profileData.message);
+      } else {
+        profilePutRequest(loginData.token, data, dispatch);
+        setMessageInfoEdit(profileData.message);
+      }
     } else {
-      setMsgEditSuccess("User profile data are already updated");
+      if (profileData.apiError) {
+        setMessageInfoEdit(profileData.message);
+      } else {
+        setMessageInfoEdit("User profile data is already updated");
+      }
     }
   }
 
   function cancelEditProfile(e) {
     e.preventDefault();
-    dispatch(editProfileStatus(false));
+    profileOutEdit(dispatch);
+    setMessageInfoEdit("");
   }
 
   return (
@@ -55,7 +60,15 @@ const EditProfileForm = () => {
           />
         ))}
       </div>
-      <p className="edit-messageSuccess">{msgEditSuccess}</p>
+      <p
+        className={
+          profileData.status === 200
+            ? "edit-message--success"
+            : "edit-message--fail"
+        }
+      >
+        {messageInfoEdit}
+      </p>
       <div>
         <button>Save</button>
         <button onClick={cancelEditProfile}>Cancel</button>

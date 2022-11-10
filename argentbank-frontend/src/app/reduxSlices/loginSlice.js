@@ -1,19 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initLoginData } from "../initialStoreData";
+import { initStateLogin } from "../initialStoreData";
 
 export const loginSlice = createSlice({
   name: "login",
-  initialState: initLoginData,
+  initialState: initStateLogin,
   reducers: {
-    setLoginData: (state, action) => {
-      state.status = action.payload.status;
-      state.message = action.payload.message;
-      state.connected = action.payload.connected;
-      state.remember = action.payload.remember;
-      state.token = action.payload.token;
+    getLoginData: (state, action) => {
+      state.loginData = action.payload;
+      state.connexion = "on load";
+    },
+    connectStatus: (state, action) => {
+      state.connexion = action.payload;
+    },
+    errorRequestLoginData: (state, action) => {
+      state.loginData = action.payload;
+      state.connexion = "not connected";
+    },
+    resetLoginData: (state, action) => {
+      state.loginData = action.payload;
+      state.connexion = "not connected";
     },
   },
 });
 
-export const { setLoginData } = loginSlice.actions;
+export const {
+  getLoginData,
+  errorRequestLoginData,
+  resetLoginData,
+  connectStatus,
+} = loginSlice.actions;
 export default loginSlice.reducer;

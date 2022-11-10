@@ -3,36 +3,23 @@ import MainNav from "../../components/mainNav/MainNav";
 import { faUserPlus, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../../components/footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoginData } from "../../app/reduxSlices/loginSlice";
-import {
-  setProfileData,
-  editProfileStatus,
-} from "../../app/reduxSlices/profileSlice";
-import { initLoginData, initProfileData } from "../../app/initialStoreData";
+import { resetStore } from "../../app/reduxActions/logoutAction";
 
 const Error404 = () => {
   const dispatch = useDispatch();
-  const loginData = useSelector((state) => state.login);
-  const loginSuccess = loginData.connected;
-  const profileData = useSelector((state) => state.profile);
-
-  function resetStore() {
-    console.clear();
-    dispatch(setLoginData(initLoginData));
-    dispatch(editProfileStatus(false));
-    dispatch(setProfileData(initProfileData));
-  }
+  const { connexion } = useSelector((state) => state.login);
+  const { profileData } = useSelector((state) => state.profile);
 
   return (
     <div className="current-page">
-      {loginSuccess === true ? (
+      {connexion === "connected" ? (
         <MainNav
           pathNavlink1={"/profile"}
           txtNavlink1={profileData.firstName}
           pathNavlink2={"/"}
           iconNavlink2={faSignOutAlt}
           txtNavlink2={"Sign out"}
-          eventNavlink2={resetStore}
+          eventNavlink2={() => resetStore(dispatch)}
         />
       ) : (
         <MainNav

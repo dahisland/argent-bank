@@ -11,13 +11,11 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const loginData = useSelector((state) => state.login);
-  const profileData = useSelector((state) => state.profile);
-  const loginSuccess = loginData.connected;
-  const profileStatus = profileData.status;
+  const { connexion } = useSelector((state) => state.login);
+  // const { profileData } = useSelector((state) => state.profile);
 
   useEffect(() => {
-    if (loginSuccess === true && profileStatus !== null) {
+    if (connexion === "connected") {
       navigate("/");
     }
   });

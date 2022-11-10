@@ -1,21 +1,21 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editProfileStatus } from "../../app/reduxSlices/profileSlice";
+import { profileOnEdit } from "../../app/reduxActions/editProfileStatusAction";
 import EditProfileForm from "../editProfileForm/EditProfileForm";
 
 const WelcomeHeader = () => {
   const dispatch = useDispatch();
-  const profileData = useSelector((state) => state.profile);
+  const { profileData, isEdited } = useSelector((state) => state.profile);
 
   function editProfile(e) {
     e.preventDefault();
-    dispatch(editProfileStatus(true));
+    profileOnEdit(dispatch);
   }
 
   return (
-    <div className={profileData.isEdited ? "header--edit" : "header"}>
+    <div className={isEdited ? "header--edit" : "header"}>
       <h1>Welcome back</h1>
-      {profileData.isEdited ? (
+      {isEdited ? (
         <EditProfileForm />
       ) : (
         <div>
