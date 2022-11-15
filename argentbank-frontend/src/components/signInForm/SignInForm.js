@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useNavigate } from "react-router-dom";
 import { signInInputData } from "../../data/staticData";
-import { loginPostRequest } from "../../app/reduxActions/getLoginAction";
+import { loginPostRequest } from "../../app/reduxActions/getLogin.action";
 import { useDispatch, useSelector } from "react-redux";
 
 const SignInForm = () => {
-  const { loginData, connexion } = useSelector((state) => state.login);
+  const { message, status } = useSelector((state) => state.login);
   const {
     register,
     handleSubmit,
@@ -46,11 +46,9 @@ const SignInForm = () => {
       </div>
 
       <p
-        className={
-          connexion === "on load" ? "submit-message" : "submit-message--error"
-        }
+        className={status !== 200 ? "submit-message--error" : "submit-message"}
       >
-        {loginData.message}
+        {message}
       </p>
 
       <button className="sign-in-button">Sign In</button>

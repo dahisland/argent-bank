@@ -1,24 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initStateProfile } from "../initialStoreData";
+import { initStateProfile } from "../initStatesData";
 
 export const profileSlice = createSlice({
   name: "profile",
   initialState: initStateProfile,
   reducers: {
     getProfileData: (state, action) => {
-      state.profileData = action.payload;
+      state.profileData = action.payload.profileData;
+      state.status = action.payload.status;
+      state.message = action.payload.message;
     },
-    errorRequestProfileData: (state, action) => {
-      state.profileData = action.payload;
+    rejectedProfileData: (state, action) => {
+      state.profileData = initStateProfile.profileData;
+      state.status = action.payload.status;
+      state.message = action.payload.message;
     },
     editProfileStatus: (state, action) => {
       state.isEdited = action.payload;
     },
     updateProfileData: (state, action) => {
-      state.profileData = action.payload;
+      state.profileData = action.payload.profileData;
     },
     resetProfileData: (state, action) => {
-      state.profileData = action.payload;
+      state.profileData = action.payload.profileData;
+      state.status = action.payload.status;
+      state.message = action.payload.message;
       if (state.isEdited) {
         state.isEdited = false;
       }
@@ -28,7 +34,7 @@ export const profileSlice = createSlice({
 
 export const {
   getProfileData,
-  errorRequestProfileData,
+  rejectedProfileData,
   editProfileStatus,
   updateProfileData,
   resetProfileData,

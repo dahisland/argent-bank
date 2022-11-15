@@ -1,0 +1,15 @@
+@import "../../style/utils";
+
+.main-nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.main-nav-logo-image {
+  max-width: 100%;
+  width: 200px;
+}

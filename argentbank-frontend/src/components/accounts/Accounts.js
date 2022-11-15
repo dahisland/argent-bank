@@ -1,24 +1,20 @@
 import React from "react";
-import { userAccountsData } from "../../data/staticData";
+import { useNavigate } from "react-router-dom";
 import BtnTransaction from "../btnTransaction/BtnTransaction";
 
-const Accounts = () => {
+const Accounts = ({ item }) => {
+  const navigate = useNavigate();
   return (
-    <div>
-      <h2 className="sr-only">Accounts</h2>
-      {userAccountsData.map((item, index) => (
-        <section className="account" key={"account" + index}>
-          <div className="account-content-wrapper">
-            <h3 className="account-title">{item.title}</h3>
-            <p className="account-amount">{item.amount}</p>
-            <p className="account-amount-description">{item.description}</p>
-          </div>
-          <div className="account-content-wrapper cta">
-            <BtnTransaction />
-          </div>
-        </section>
-      ))}
-    </div>
+    <section className="account">
+      <div className="account-content-wrapper">
+        <h3 className="account-title">{item.title}</h3>
+        <p className="account-amount">{item.amount}</p>
+        <p className="account-amount-description">{item.description}</p>
+      </div>
+      <div className="account-content-wrapper cta">
+        <BtnTransaction navTo={() => navigate("/transactions/" + item.id)} />
+      </div>
+    </section>
   );
 };
 

@@ -7,9 +7,11 @@ export class modelLoginData {
   }
   formatLoginData() {
     return {
+      loginData: {
+        remember: this.remember,
+        token: this.token,
+      },
       status: this.status,
-      remember: this.remember,
-      token: this.token,
       message: this.message,
     };
   }

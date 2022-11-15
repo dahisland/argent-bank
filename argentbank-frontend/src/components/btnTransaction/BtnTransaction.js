@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-const BtnTransaction = () => {
+const BtnTransaction = ({ navTo }) => {
   const { isEdited } = useSelector((state) => state.profile);
 
   return (
@@ -11,6 +11,7 @@ const BtnTransaction = () => {
           ? "transaction-button bg-purple border-purple"
           : "transaction-button bg-green border-green"
       }
+      onClick={navTo}
     >
       View transactions
     </button>

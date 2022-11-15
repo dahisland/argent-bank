@@ -1,26 +1,24 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import MainNav from "../../components/mainNav/MainNav";
 import Footer from "../../components/footer/Footer";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import WelcomeHeader from "../../components/welcomeHeader/WelcomeHeader";
 import Accounts from "../../components/accounts/Accounts";
-import { resetStore } from "../../app/reduxActions/logoutAction";
-import { profilePostRequest } from "../../app/reduxActions/getProfileAction";
-import { loginConnected } from "../../app/reduxActions/loginConnexion";
+import { profilePostRequest } from "../../app/reduxActions/getProfile.action";
+import { userAccountsData } from "../../data/mockData";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loginData, connexion } = useSelector((state) => state.login);
-  const { profileData, isEdited } = useSelector((state) => state.profile);
+  const { loginData, connection } = useSelector((state) => state.login);
+  const { isEdited } = useSelector((state) => state.profile);
+
+  const accountData = userAccountsData.body.accountData;
 
   useEffect(() => {
-    if (connexion === "on load" || connexion === "connected") {
+    if (connection !== "offline") {
       profilePostRequest(loginData.token, dispatch);
-      loginConnected(dispatch);
     } else {
       navigate("/");
     }
@@ -29,17 +27,13 @@ const Profile = () => {
 
   return (
     <div className="current-page">
-      <MainNav
-        pathNavlink1="/profile"
-        txtNavlink1={profileData.firstName}
-        pathNavlink2="/"
-        iconNavlink2={faSignOutAlt}
-        txtNavlink2="Sign Out"
-        eventNavlink2={() => resetStore(dispatch)}
-      />
+      <MainNav />
       <main className={isEdited ? "main bg-grey" : "main bg-dark"}>
         <WelcomeHeader />
-        <Accounts />
+        <h2 className="sr-only">Accounts</h2>
+        {accountData.map((item, index) => (
+          <Accounts item={item} key={"accounts" + index} />
+        ))}
       </main>
       <Footer />
     </div>

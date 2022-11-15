@@ -1,6 +1,6 @@
 import axios from "axios";
 import { modelLoginData } from "../../data/modelLoginData";
-import { getLoginData, errorRequestLoginData } from "../reduxSlices/loginSlice";
+import { getLoginData, rejectedLoginData } from "../reduxSlices/loginSlice";
 import { baseApiURL, loginEndpoint } from "../../service/apiURL";
 
 export const loginPostRequest = async (submitData, dispatch, navigate) => {
@@ -18,11 +18,17 @@ export const loginPostRequest = async (submitData, dispatch, navigate) => {
     if (err.response && err.response.data.status === 400) {
       const errorData = err.response.data;
       console.log(err.response.data);
-      dispatch(errorRequestLoginData(errorData));
+      dispatch(rejectedLoginData(errorData));
       return errorData;
     } else {
       console.log(err);
-      dispatch(errorRequestLoginData({ message: err.message, apiError: true }));
+      dispatch(
+        rejectedLoginData({
+          message: err.message,
+          status: err.code,
+          apiError: true,
+        })
+      );
       return err;
     }
   }

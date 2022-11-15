@@ -1,17 +1,15 @@
 export const initStateLogin = {
   loginData: {
-    status: null,
-    message: "",
     remember: false,
     token: null,
   },
-  connexion: "not connected",
+  connection: "offline",
+  status: null,
+  message: "",
 };
 
 export const initStateProfile = {
   profileData: {
-    status: null,
-    message: "",
     createdAt: "",
     email: "",
     firstName: "",
@@ -19,4 +17,6 @@ export const initStateProfile = {
     lastName: "",
     updatedAt: "",
   },
+  status: null,
+  message: "",
 };

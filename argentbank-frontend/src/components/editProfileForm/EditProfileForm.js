@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { profileOutEdit } from "../../app/reduxActions/editProfileStatusAction";
-import { profilePutRequest } from "../../app/reduxActions/updateProfileAction";
+import { profileOutEdit } from "../../app/reduxActions/editProfileStatus.action";
+import { profilePutRequest } from "../../app/reduxActions/updateProfile.action";
 
 const EditProfileForm = () => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
   const { loginData } = useSelector((state) => state.login);
-  const { profileData } = useSelector((state) => state.profile);
+  const { profileData, status, message } = useSelector(
+    (state) => state.profile
+  );
   const [messageInfoEdit, setMessageInfoEdit] = useState("");
 
   const inputProfileData = [
@@ -22,15 +24,15 @@ const EditProfileForm = () => {
       data.userFirstname !== profileData.firstName ||
       data.userLastname !== profileData.lastName
     ) {
-      if (profileData.apiError) {
-        setMessageInfoEdit(profileData.message);
+      if (status !== 200) {
+        setMessageInfoEdit(message);
       } else {
         profilePutRequest(loginData.token, data, dispatch);
-        setMessageInfoEdit(profileData.message);
+        setMessageInfoEdit(message);
       }
     } else {
-      if (profileData.apiError) {
-        setMessageInfoEdit(profileData.message);
+      if (status !== 200) {
+        setMessageInfoEdit(message);
       } else {
         setMessageInfoEdit("User profile data is already updated");
       }
@@ -62,9 +64,7 @@ const EditProfileForm = () => {
       </div>
       <p
         className={
-          profileData.status === 200
-            ? "edit-message--success"
-            : "edit-message--fail"
+          status === 200 ? "edit-message--success" : "edit-message--fail"
         }
       >
         {messageInfoEdit}

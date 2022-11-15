@@ -1,8 +1,9 @@
 import axios from "axios";
 import { modelProfileData } from "../../data/modelProfileData";
+import { loginOnline } from "./connectionStatus.action";
 import {
   getProfileData,
-  errorRequestProfileData,
+  rejectedProfileData,
 } from "../reduxSlices/profileSlice";
 import { baseApiURL, profileEndpoint } from "../../service/apiURL";
 
@@ -20,12 +21,13 @@ export const profilePostRequest = async (token, dispatch) => {
     const profileData = new modelProfileData(response.data);
     const profileDataFormatted = profileData.formatProfileData();
     dispatch(getProfileData(profileDataFormatted));
+    loginOnline(dispatch);
     return profileDataFormatted;
   } catch (err) {
     if (err.response && err.response.data.status === 401) {
       const errorData = err.response.data;
       dispatch(
-        errorRequestProfileData({
+        rejectedProfileData({
           message: errorData.message,
           status: errorData.status,
         })
@@ -34,7 +36,11 @@ export const profilePostRequest = async (token, dispatch) => {
     } else {
       console.log(err);
       dispatch(
-        errorRequestProfileData({ message: err.message, apiError: true })
+        rejectedProfileData({
+          message: err.message,
+          status: err.code,
+          apiError: true,
+        })
       );
       return err;
     }

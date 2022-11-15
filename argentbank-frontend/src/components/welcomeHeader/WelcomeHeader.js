@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { profileOnEdit } from "../../app/reduxActions/editProfileStatusAction";
+import { profileOnEdit } from "../../app/reduxActions/editProfileStatus.action";
 import EditProfileForm from "../editProfileForm/EditProfileForm";
 
 const WelcomeHeader = () => {

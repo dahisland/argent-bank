@@ -12,14 +12,18 @@ export class modelProfileData {
 
   formatProfileData() {
     return {
+      profileData: {
+        status: this.status,
+        message: this.message,
+        createdAt: this.createdAt,
+        email: this.email,
+        firstName: this.firstName,
+        id: this.id,
+        lastName: this.lastName,
+        updatedAt: this.updatedAt,
+      },
       status: this.status,
       message: this.message,
-      createdAt: this.createdAt,
-      email: this.email,
-      firstName: this.firstName,
-      id: this.id,
-      lastName: this.lastName,
-      updatedAt: this.updatedAt,
     };
   }
 }

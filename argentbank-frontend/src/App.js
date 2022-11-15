@@ -3,6 +3,7 @@ import Homepage from "./pages/homepage/Homepage";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/signUp/SignUp";
 import Profile from "./pages/profile/Profile";
+import Transactions from "./pages/transactions/Transactions";
 import Error404 from "./pages/error404/Error404";
 
 function App() {
@@ -10,9 +11,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Homepage />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
+        <Route exact path="/login" element={<Login />}></Route>
+        <Route exact path="/signup" element={<SignUp />}></Route>
+        <Route exact path="/profile" element={<Profile />}></Route>
+        <Route path="/transactions/:userID" element={<Transactions />}></Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </BrowserRouter>

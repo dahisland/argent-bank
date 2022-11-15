@@ -2,7 +2,7 @@ import axios from "axios";
 import { modelProfileData } from "../../data/modelProfileData";
 import {
   updateProfileData,
-  errorRequestProfileData,
+  rejectedProfileData,
 } from "../reduxSlices/profileSlice";
 import { baseApiURL, profileEndpoint } from "../../service/apiURL";
 
@@ -30,12 +30,16 @@ export const profilePutRequest = (token, submitData, dispatch) => {
     .catch(function (err) {
       if (err.response && err.response.data.status === 401) {
         const errorData = err.response.data;
-        dispatch(errorRequestProfileData(errorData));
+        dispatch(rejectedProfileData(errorData));
         return errorData;
       } else {
         console.log(err);
         dispatch(
-          errorRequestProfileData({ message: err.message, apiError: true })
+          rejectedProfileData({
+            message: err.message,
+            status: err.code,
+            apiError: true,
+          })
         );
         return err;
       }

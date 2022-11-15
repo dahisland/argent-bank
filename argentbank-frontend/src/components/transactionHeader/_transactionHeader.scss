@@ -1,0 +1,43 @@
+@import "../../style/utils";
+
+.transactionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: map-get($colors, night);
+  background-color: map-get($colors, ice);
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  text-align: center;
+  margin-bottom: 2rem;
+  @include responsiveTabloids {
+    flex-direction: row;
+  }
+}
+
+.transactionHeader-amount {
+  margin: 0;
+  @include fontAvenirBlack;
+  font-size: map-get($sizes, xl);
+  font-weight: bold;
+}
+
+.transactionHeader-amount-description {
+  margin: 0;
+}
+
+.transactionHeader-title {
+  margin: 0;
+  padding: 0;
+  font-size: map-get($sizes, base);
+  font-weight: normal;
+}
+
+.transactionHeader-content-wrapper {
+  width: 100%;
+  flex: 1;
+}

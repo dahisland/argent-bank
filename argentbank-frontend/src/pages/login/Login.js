@@ -2,33 +2,24 @@ import React, { useEffect } from "react";
 import MainNav from "../../components/mainNav/MainNav";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import SignInForm from "../../components/signInForm/SignInForm";
 import Footer from "../../components/footer/Footer";
-
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { connexion } = useSelector((state) => state.login);
-  // const { profileData } = useSelector((state) => state.profile);
+  const { connection } = useSelector((state) => state.login);
 
   useEffect(() => {
-    if (connexion === "connected") {
+    if (connection === "online") {
       navigate("/");
     }
   });
 
   return (
     <div className="current-page">
-      <MainNav
-        pathNavlink1="/login"
-        txtNavlink1="Sign In"
-        pathNavlink2="/signup"
-        iconNavlink2={faUserPlus}
-        txtNavlink2="Sign Up"
-      />
+      <MainNav />
       <main className="main bg-dark">
         <section className="sign-in-content">
           <FontAwesomeIcon icon={faUserCircle} />
