@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { profileOutEdit } from "../../app/reduxActions/editProfileStatus.action";
-import { profilePutRequest } from "../../app/reduxActions/updateProfile.action";
+import { actionOffEditProfile } from "../../app/actions/editProfileStatus.action";
+import { actionUpdateProfileData } from "../../app/actions/updateProfileData.action";
+import { actionUpdateProfileMessage } from "../../app/actions/updateProfileMessage.action";
 
 const EditProfileForm = () => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
   const { loginData } = useSelector((state) => state.login);
-  const { profileData, status, message } = useSelector(
+  const { profileData, profileStatus, profileMessage } = useSelector(
     (state) => state.profile
   );
-  const [messageInfoEdit, setMessageInfoEdit] = useState("");
 
   const inputProfileData = [
     { id: "userFirstname", value: profileData.firstName },
@@ -24,25 +24,19 @@ const EditProfileForm = () => {
       data.userFirstname !== profileData.firstName ||
       data.userLastname !== profileData.lastName
     ) {
-      if (status !== 200) {
-        setMessageInfoEdit(message);
-      } else {
-        profilePutRequest(loginData.token, data, dispatch);
-        setMessageInfoEdit(message);
-      }
+      actionUpdateProfileData(loginData.token, data, dispatch);
     } else {
-      if (status !== 200) {
-        setMessageInfoEdit(message);
-      } else {
-        setMessageInfoEdit("User profile data is already updated");
-      }
+      actionUpdateProfileMessage(
+        "User profile data is already updated",
+        dispatch
+      );
     }
   }
 
   function cancelEditProfile(e) {
     e.preventDefault();
-    profileOutEdit(dispatch);
-    setMessageInfoEdit("");
+    actionOffEditProfile(dispatch);
+    actionUpdateProfileMessage("", dispatch);
   }
 
   return (
@@ -64,10 +58,10 @@ const EditProfileForm = () => {
       </div>
       <p
         className={
-          status === 200 ? "edit-message--success" : "edit-message--fail"
+          profileStatus === 200 ? "edit-message--success" : "edit-message--fail"
         }
       >
-        {messageInfoEdit}
+        {profileMessage}
       </p>
       <div>
         <button>Save</button>

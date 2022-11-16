@@ -7,26 +7,31 @@ export const profileSlice = createSlice({
   reducers: {
     getProfileData: (state, action) => {
       state.profileData = action.payload.profileData;
-      state.status = action.payload.status;
-      state.message = action.payload.message;
+      state.profileStatus = action.payload.profileStatus;
+      state.profileMessage = action.payload.profileMessage;
     },
     rejectedProfileData: (state, action) => {
       state.profileData = initStateProfile.profileData;
-      state.status = action.payload.status;
-      state.message = action.payload.message;
+      state.profileStatus = action.payload.profileStatus;
+      state.profileMessage = action.payload.profileMessage;
     },
     editProfileStatus: (state, action) => {
-      state.isEdited = action.payload;
+      state.profileIsEdited = action.payload;
     },
     updateProfileData: (state, action) => {
       state.profileData = action.payload.profileData;
+      state.profileStatus = action.payload.profileStatus;
+      state.profileMessage = action.payload.profileMessage;
+    },
+    updateProfileMessage: (state, action) => {
+      state.profileMessage = action.payload;
     },
     resetProfileData: (state, action) => {
       state.profileData = action.payload.profileData;
-      state.status = action.payload.status;
-      state.message = action.payload.message;
-      if (state.isEdited) {
-        state.isEdited = false;
+      state.profileStatus = action.payload.profileStatus;
+      state.profileMessage = action.payload.profileMessage;
+      if (state.profileIsEdited) {
+        state.profileIsEdited = false;
       }
     },
   },
@@ -37,6 +42,7 @@ export const {
   rejectedProfileData,
   editProfileStatus,
   updateProfileData,
+  updateProfileMessage,
   resetProfileData,
 } = profileSlice.actions;
 export default profileSlice.reducer;

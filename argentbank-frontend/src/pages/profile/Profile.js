@@ -5,20 +5,20 @@ import MainNav from "../../components/mainNav/MainNav";
 import Footer from "../../components/footer/Footer";
 import WelcomeHeader from "../../components/welcomeHeader/WelcomeHeader";
 import Accounts from "../../components/accounts/Accounts";
-import { profilePostRequest } from "../../app/reduxActions/getProfile.action";
-import { userAccountsData } from "../../data/mockData";
+import { actionGetProfileData } from "../../app/actions/getProfileData.action";
+import { actionGetAccountData } from "../../app/actions/getAccountData.action";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loginData, connection } = useSelector((state) => state.login);
-  const { isEdited } = useSelector((state) => state.profile);
-
-  const accountData = userAccountsData.body.accountData;
+  const { profileIsEdited } = useSelector((state) => state.profile);
+  const { accountData } = useSelector((state) => state.account);
 
   useEffect(() => {
     if (connection !== "offline") {
-      profilePostRequest(loginData.token, dispatch);
+      actionGetProfileData(loginData.token, dispatch);
+      actionGetAccountData(dispatch);
     } else {
       navigate("/");
     }
@@ -28,11 +28,11 @@ const Profile = () => {
   return (
     <div className="current-page">
       <MainNav />
-      <main className={isEdited ? "main bg-grey" : "main bg-dark"}>
+      <main className={profileIsEdited ? "main bg-grey" : "main bg-dark"}>
         <WelcomeHeader />
         <h2 className="sr-only">Accounts</h2>
         {accountData.map((item, index) => (
-          <Accounts item={item} key={"accounts" + index} />
+          <Accounts data={item} key={"accounts" + index} />
         ))}
       </main>
       <Footer />

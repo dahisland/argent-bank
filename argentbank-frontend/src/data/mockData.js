@@ -1,38 +1,36 @@
-export const userAccountsData = {
+export const userAccountData = {
   status: 200,
-  message: "",
+  message: "Successfully got user account data",
   body: {
+    accountId: "userAccount",
     accountData: [
       {
-        name: "checking",
         title: "Argent Bank Checking (x8349)",
         amount: "$2,082.79",
         description: "Available Balance",
-        id: "checking",
+        categoryId: "checking",
       },
       {
-        name: "savings",
         title: "Argent Bank Savings (x6712)",
         amount: "$10,928.42",
         description: "Available Balance",
-        id: "savings",
+        categoryId: "savings",
       },
       {
-        name: "credit-card",
         title: "Argent Bank Credit Card (x8349)",
         amount: "$184.30",
         description: "Current Balance",
-        id: "credit-card",
+        categoryId: "credit-card",
       },
     ],
   },
 };
 
-export const transactionsCheckData = {
+export const userTransactionsData = {
   status: 200,
-  message: "Transactions data success",
+  message: "Successfully got account transactions checking data",
   body: {
-    accountID: "checking",
+    categoryId: "checking",
     transactions: [
       {
         createdAt: "June 20th, 2020",
@@ -42,7 +40,7 @@ export const transactionsCheckData = {
         type: "Electronic",
         category: "sport",
         notes: "",
-        id: "checking1",
+        transactionId: "checking1",
         updatedAt: "",
       },
       {
@@ -53,7 +51,7 @@ export const transactionsCheckData = {
         type: "Electronic",
         category: "furnitures",
         notes: "Waiting for refund",
-        id: "checking2",
+        transactionId: "checking2",
         updatedAt: "",
       },
       {
@@ -64,7 +62,7 @@ export const transactionsCheckData = {
         type: "Electronic",
         category: "food",
         notes: "",
-        id: "checking3",
+        transactionId: "checking3",
         updatedAt: "",
       },
       {
@@ -75,7 +73,7 @@ export const transactionsCheckData = {
         type: "Electronic",
         category: "clothes",
         notes: "",
-        id: "checking4",
+        transactionId: "checking4",
         updatedAt: "",
       },
       {
@@ -86,7 +84,7 @@ export const transactionsCheckData = {
         type: "Electronic",
         category: "sport",
         notes: "",
-        id: "checking5",
+        transactionId: "checking5",
         updatedAt: "",
       },
       {
@@ -97,7 +95,7 @@ export const transactionsCheckData = {
         type: "Electronic",
         category: "food",
         notes: "",
-        id: "checking6",
+        transactionId: "checking6",
         updatedAt: "",
       },
     ],

@@ -1,0 +1,54 @@
+@import "../../style/utils";
+
+.transactions-list {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-collapse: collapse;
+  tbody {
+    background-color: white;
+  }
+  th {
+    padding: 0.5rem;
+  }
+}
+
+// rows deployments
+
+.transaction-item-row {
+  td {
+    border: 2px solid map-get($colors, ice);
+    border-bottom: 2px solid map-get($colors, lightmouse);
+  }
+}
+.transaction-item-row--deployed {
+  background-color: lighten(map-get($colors, lightmouse), 17%);
+  td {
+    border: 2px solid lighten(map-get($colors, lightmouse), 17%);
+    border-bottom: 2px solid lighten(map-get($colors, lightmouse), 12%);
+  }
+}
+
+.transaction-item-hiddenRow--hidden {
+  display: none;
+  text-align: left;
+  td {
+    border: 2px solid map-get($colors, ice);
+    border-bottom: 2px solid map-get($colors, lightmouse);
+  }
+}
+
+.transaction-item-hiddenRow--deployed {
+  display: table-row;
+  text-align: left;
+  background-color: lighten(map-get($colors, lightmouse), 17%);
+  td {
+    border: 2px solid lighten(map-get($colors, lightmouse), 17%);
+    border-bottom: 3px solid map-get($colors, cassis);
+  }
+}
+
+.icon-deploy {
+  cursor: pointer;
+}

@@ -1,6 +1,9 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import loginReducer from "./reduxSlices/loginSlice";
-import profileReducer from "./reduxSlices/profileSlice";
+import loginReducer from "./reducers/login.slice";
+import profileReducer from "./reducers/profile.slice";
+import signupReducer from "./reducers/signup.slice";
+import accountReducer from "./reducers/account.slice";
+import transactionsReducer from "./reducers/transactions.slice";
 import storage from "redux-persist/lib/storage";
 import {
   persistReducer,
@@ -20,6 +23,9 @@ const persistConfig = {
 export const rootReducers = combineReducers({
   login: loginReducer,
   profile: profileReducer,
+  signup: signupReducer,
+  account: accountReducer,
+  transactions: transactionsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);

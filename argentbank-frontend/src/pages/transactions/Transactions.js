@@ -1,98 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { userAccountsData, transactionsCheckData } from "../../data/mockData";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import MainNav from "../../components/mainNav/MainNav";
 import Footer from "../../components/footer/Footer";
 import TransactionHeader from "../../components/transactionHeader/TransactionHeader";
+import TransactionTable from "../../components/transactionTable/TransactionTable";
+import { actionGetAccountData } from "../../app/actions/getAccountData.action";
+import { actionGetTransactionsData } from "../../app/actions/getTransactionsData.action";
 
 const Transactions = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   let { userID } = useParams();
-  const [transactionData, setTransactionData] = useState({ type: null });
-  const [status, setStatus] = useState("");
+  const { connection } = useSelector((state) => state.login);
+  const { accountData } = useSelector((state) => state.account);
+  const { transactionsData } = useSelector((state) => state.transactions);
 
-  const accountData = userAccountsData.body.accountData;
-  const transactionsData = transactionsCheckData.body.transactions;
+  const [accountFiltered, setAccountFiltered] = useState({ id: null });
 
   useEffect(() => {
-    setTransactionData(accountData.find((item) => item.id === userID));
+    if (connection !== "offline") {
+      actionGetAccountData(dispatch);
+      actionGetTransactionsData(dispatch);
+      setAccountFiltered(
+        accountData.find((item) => item.categoryId === userID)
+      );
+    } else {
+      navigate("/");
+    }
     // eslint-disable-next-line
-  }, [userID, accountData]);
-
-  function handleDisplay(id) {
-    status === id ? setStatus("") : setStatus(id);
-  }
+  }, [userID, accountData, dispatch]);
 
   return (
     <div className="current-page">
       <MainNav />
       <main className="main bg-grey">
-        <div>
-          <TransactionHeader item={transactionData} />
-        </div>
-        <table className="transactions-list">
-          <thead>
-            <tr>
-              <th></th>
-              <th>DATE</th>
-              <th>DESCRIPTION</th>
-              <th>AMOUNT</th>
-              <th>BALANCE</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactionsData.map((item, index) => (
-              <React.Fragment key={"transactions" + index}>
-                <tr>
-                  <td
-                    onClick={() => handleDisplay(item.id)}
-                    className="icon-deploy"
-                  >
-                    i
-                  </td>
-                  <td>{item.createdAt}</td>
-                  <td>{item.description}</td>
-                  <td>${item.amount}</td>
-                  <td>${item.balance}</td>
-                </tr>
-                <tr
-                  className={
-                    status === item.id
-                      ? "transaction-edit display"
-                      : "transaction-edit display--none"
-                  }
-                >
-                  <td colSpan={5}>
-                    <form>
-                      <label htmlFor="type">Transaction Type: </label>
-                      <input
-                        type="text"
-                        name="type"
-                        id="type"
-                        defaultValue={item.type}
-                      />
-                      <br />
-                      <label htmlFor="category">Category: </label>
-                      <input
-                        type="text"
-                        name="category"
-                        id="category"
-                        defaultValue={item.category}
-                      />
-                      <br />
-                      <label htmlFor="notes">Notes: </label>
-                      <input
-                        type="text"
-                        name="notes"
-                        id="notes"
-                        defaultValue={item.notes}
-                      />
-                    </form>
-                  </td>
-                </tr>
-              </React.Fragment>
-            ))}
-          </tbody>
-        </table>
+        <TransactionHeader data={accountFiltered} />
+        <TransactionTable data={transactionsData} />
       </main>
       <Footer />
     </div>

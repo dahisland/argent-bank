@@ -2,6 +2,7 @@
 
 .transaction-button {
   display: block;
+  cursor: pointer;
   width: 100%;
   padding: 8px;
   font-size: map-get($sizes, xs);

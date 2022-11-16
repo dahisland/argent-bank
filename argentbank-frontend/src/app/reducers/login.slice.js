@@ -8,8 +8,8 @@ export const loginSlice = createSlice({
     getLoginData: (state, action) => {
       state.loginData = action.payload.loginData;
       state.connection = "pending";
-      state.status = action.payload.status;
-      state.message = action.payload.message;
+      state.loginStatus = action.payload.loginStatus;
+      state.loginMessage = action.payload.loginMessage;
     },
     connectStatus: (state, action) => {
       state.connection = action.payload;
@@ -17,14 +17,14 @@ export const loginSlice = createSlice({
     rejectedLoginData: (state, action) => {
       state.loginData = initStateLogin.loginData;
       state.connection = "offline";
-      state.status = action.payload.status;
-      state.message = action.payload.message;
+      state.loginStatus = action.payload.loginStatus;
+      state.loginMessage = action.payload.loginMessage;
     },
     resetLoginData: (state, action) => {
       state.loginData = action.payload.loginData;
       state.connection = "offline";
-      state.status = action.payload.status;
-      state.message = action.payload.message;
+      state.loginStatus = action.payload.loginStatus;
+      state.loginMessage = action.payload.loginMessage;
     },
   },
 });

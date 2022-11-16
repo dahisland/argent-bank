@@ -4,8 +4,8 @@ export const initStateLogin = {
     token: null,
   },
   connection: "offline",
-  status: null,
-  message: "",
+  loginStatus: null,
+  loginMessage: "",
 };
 
 export const initStateProfile = {
@@ -17,6 +17,33 @@ export const initStateProfile = {
     lastName: "",
     updatedAt: "",
   },
-  status: null,
-  message: "",
+  profileStatus: null,
+  profileMessage: "",
+};
+
+export const initStateSignup = {
+  signupData: {
+    createdAt: "",
+    email: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    updatedAt: "",
+  },
+  signupStatus: null,
+  signupMessage: "",
+};
+
+export const initStateAccount = {
+  accountData: [],
+  accountId: "",
+  accountStatus: null,
+  accountMessage: "",
+};
+
+export const initStateTransactions = {
+  transactionsData: [],
+  categoryId: "",
+  transactionsStatus: null,
+  transactionsMessage: "",
 };

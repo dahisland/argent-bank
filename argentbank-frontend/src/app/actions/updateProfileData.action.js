@@ -3,10 +3,10 @@ import { modelProfileData } from "../../data/modelProfileData";
 import {
   updateProfileData,
   rejectedProfileData,
-} from "../reduxSlices/profileSlice";
+} from "../reducers/profile.slice";
 import { baseApiURL, profileEndpoint } from "../../service/apiURL";
 
-export const profilePutRequest = (token, submitData, dispatch) => {
+export const actionUpdateProfileData = (token, submitData, dispatch) => {
   return axios
     .put(
       baseApiURL + profileEndpoint,
@@ -30,15 +30,19 @@ export const profilePutRequest = (token, submitData, dispatch) => {
     .catch(function (err) {
       if (err.response && err.response.data.status === 401) {
         const errorData = err.response.data;
-        dispatch(rejectedProfileData(errorData));
+        dispatch(
+          rejectedProfileData({
+            profileMessage: errorData.message,
+            profileStatus: errorData.status,
+          })
+        );
         return errorData;
       } else {
         console.log(err);
         dispatch(
           rejectedProfileData({
-            message: err.message,
-            status: err.code,
-            apiError: true,
+            profileMessage: err.message,
+            profileStatus: err.code,
           })
         );
         return err;

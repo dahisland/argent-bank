@@ -7,7 +7,7 @@ import {
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { resetStore } from "../../app/reduxActions/logout.action";
+import { actionResetStore } from "../../app/actions/resetStore.action";
 import NavLogo from "../navLogo/NavLogo";
 
 const MainNav = () => {
@@ -27,7 +27,7 @@ const MainNav = () => {
             }
             end
             to="/login"
-            onClick={() => resetStore(dispatch)}
+            onClick={() => actionResetStore(dispatch)}
           >
             <FontAwesomeIcon icon={faUserCircle} />
             {" Sign In"}
@@ -38,7 +38,7 @@ const MainNav = () => {
             }
             end
             to="/signup"
-            onClick={() => resetStore(dispatch)}
+            onClick={() => actionResetStore(dispatch)}
           >
             <FontAwesomeIcon icon={faUserPlus} />
             {" Sign Up"}
@@ -60,7 +60,7 @@ const MainNav = () => {
             className="main-nav-item"
             end
             to="/"
-            onClick={() => resetStore(dispatch)}
+            onClick={() => actionResetStore(dispatch)}
           >
             <FontAwesomeIcon icon={faSignOutAlt} />
             {" Sign Out"}

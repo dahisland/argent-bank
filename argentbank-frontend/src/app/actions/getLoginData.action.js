@@ -1,9 +1,9 @@
 import axios from "axios";
 import { modelLoginData } from "../../data/modelLoginData";
-import { getLoginData, rejectedLoginData } from "../reduxSlices/loginSlice";
+import { getLoginData, rejectedLoginData } from "../reducers/login.slice";
 import { baseApiURL, loginEndpoint } from "../../service/apiURL";
 
-export const loginPostRequest = async (submitData, dispatch, navigate) => {
+export const actionGetLoginData = async (submitData, dispatch, navigate) => {
   try {
     let response = await axios.post(baseApiURL + loginEndpoint, {
       email: submitData.username,
@@ -18,15 +18,19 @@ export const loginPostRequest = async (submitData, dispatch, navigate) => {
     if (err.response && err.response.data.status === 400) {
       const errorData = err.response.data;
       console.log(err.response.data);
-      dispatch(rejectedLoginData(errorData));
+      dispatch(
+        rejectedLoginData({
+          loginStatus: errorData.status,
+          loginMessage: errorData.message,
+        })
+      );
       return errorData;
     } else {
       console.log(err);
       dispatch(
         rejectedLoginData({
-          message: err.message,
-          status: err.code,
-          apiError: true,
+          loginMessage: err.message,
+          loginStatus: err.code,
         })
       );
       return err;

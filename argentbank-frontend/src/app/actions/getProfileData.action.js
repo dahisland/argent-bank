@@ -1,13 +1,10 @@
 import axios from "axios";
 import { modelProfileData } from "../../data/modelProfileData";
-import { loginOnline } from "./connectionStatus.action";
-import {
-  getProfileData,
-  rejectedProfileData,
-} from "../reduxSlices/profileSlice";
+import { actionLoginOnline } from "./connectionStatus.action";
+import { getProfileData, rejectedProfileData } from "../reducers/profile.slice";
 import { baseApiURL, profileEndpoint } from "../../service/apiURL";
 
-export const profilePostRequest = async (token, dispatch) => {
+export const actionGetProfileData = async (token, dispatch) => {
   try {
     let response = await axios.post(
       baseApiURL + profileEndpoint,
@@ -21,15 +18,15 @@ export const profilePostRequest = async (token, dispatch) => {
     const profileData = new modelProfileData(response.data);
     const profileDataFormatted = profileData.formatProfileData();
     dispatch(getProfileData(profileDataFormatted));
-    loginOnline(dispatch);
+    actionLoginOnline(dispatch);
     return profileDataFormatted;
   } catch (err) {
     if (err.response && err.response.data.status === 401) {
       const errorData = err.response.data;
       dispatch(
         rejectedProfileData({
-          message: errorData.message,
-          status: errorData.status,
+          profileMessage: errorData.message,
+          profileStatus: errorData.status,
         })
       );
       return errorData;
@@ -37,9 +34,8 @@ export const profilePostRequest = async (token, dispatch) => {
       console.log(err);
       dispatch(
         rejectedProfileData({
-          message: err.message,
-          status: err.code,
-          apiError: true,
+          profileMessage: err.message,
+          profileStatus: err.code,
         })
       );
       return err;

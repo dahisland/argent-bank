@@ -1,30 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useNavigate } from "react-router-dom";
 import { signUpInputData } from "../../data/staticData";
-import { signupPostRequest } from "../../service/apiRequests";
+import { useDispatch, useSelector } from "react-redux";
+import { actionGetSignupData } from "../../app/actions/getSignupData.action";
+import { actionResetSignupStore } from "../../app/actions/resetSignupStore.action";
 
 const SignUpForm = () => {
-  const [signupSuccess, setSignupSuccess] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { signupMessage, signupStatus } = useSelector((state) => state.signup);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  async function submitSignupForm(data) {
-    let apiRes = await signupPostRequest(data);
-    if (apiRes.status) {
-      apiRes.status === 200 ? setSignupSuccess(true) : setSignupSuccess(false);
-    }
-    setSubmitMessage(apiRes.message);
+  function submitSignupForm(data) {
+    // Call api post request
+    actionGetSignupData(data, dispatch);
   }
-
   function navToSignInPage(e) {
     e.preventDefault();
+    actionResetSignupStore(dispatch);
     navigate("/login");
   }
 
@@ -46,11 +45,15 @@ const SignUpForm = () => {
         </div>
       ))}
 
-      <p className={signupSuccess ? "submit-message" : "submit-message--error"}>
-        {submitMessage}
+      <p
+        className={
+          signupStatus !== 200 ? "submit-message--error" : "submit-message"
+        }
+      >
+        {signupMessage}
       </p>
 
-      {signupSuccess === false ? (
+      {signupStatus !== 200 ? (
         <button className="sign-up-button">Sign Up</button>
       ) : (
         <button className="sign-up-button" onClick={navToSignInPage}>

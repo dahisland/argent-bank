@@ -11,8 +11,8 @@ export class modelLoginData {
         remember: this.remember,
         token: this.token,
       },
-      status: this.status,
-      message: this.message,
+      loginStatus: this.status,
+      loginMessage: this.message,
     };
   }
 }

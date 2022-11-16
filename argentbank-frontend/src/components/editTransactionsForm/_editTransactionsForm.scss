@@ -1,0 +1,27 @@
+@import "../../style/utils";
+
+.transactions-form-edit {
+  margin: 0.5rem;
+  label {
+    display: inline-block;
+    width: 140px;
+  }
+  input {
+    background-color: lighten(map-get($colors, lightmouse), 17%);
+    border: none;
+    padding: 0.2rem 0.5rem;
+    margin-right: 0.5rem;
+    @include fontAvenir;
+    font-size: 1rem;
+    width: 140px;
+    color: map-get($colors, cassis);
+  }
+  &:nth-child(1) {
+    input {
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+  }
+}

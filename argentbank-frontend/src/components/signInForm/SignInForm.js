@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useNavigate } from "react-router-dom";
 import { signInInputData } from "../../data/staticData";
-import { loginPostRequest } from "../../app/reduxActions/getLogin.action";
+import { actionGetLoginData } from "../../app/actions/getLoginData.action";
 import { useDispatch, useSelector } from "react-redux";
 
 const SignInForm = () => {
-  const { message, status } = useSelector((state) => state.login);
+  const { loginMessage, loginStatus } = useSelector((state) => state.login);
   const {
     register,
     handleSubmit,
@@ -19,7 +19,7 @@ const SignInForm = () => {
 
   function submitLoginForm(data) {
     // Call api post request
-    loginPostRequest(data, dispatch, navigate);
+    actionGetLoginData(data, dispatch, navigate);
   }
 
   return (
@@ -46,9 +46,11 @@ const SignInForm = () => {
       </div>
 
       <p
-        className={status !== 200 ? "submit-message--error" : "submit-message"}
+        className={
+          loginStatus !== 200 ? "submit-message--error" : "submit-message"
+        }
       >
-        {message}
+        {loginMessage}
       </p>
 
       <button className="sign-in-button">Sign In</button>
