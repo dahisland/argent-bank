@@ -5,11 +5,16 @@ import EditTransactionsForm from "../editTransactionsForm/EditTransactionsForm";
 
 const TransactionTable = ({ data }) => {
   const [idItemDeployed, setIdItemDeployed] = useState("");
+  const [inputEditedId, setInputEditedId] = useState("");
 
   function handleDeploy(transactionId) {
-    idItemDeployed === transactionId
-      ? setIdItemDeployed("")
-      : setIdItemDeployed(transactionId);
+    if (idItemDeployed === transactionId) {
+      setIdItemDeployed("");
+      setInputEditedId("");
+    } else {
+      setIdItemDeployed(transactionId);
+      setInputEditedId("");
+    }
   }
 
   return (
@@ -55,7 +60,12 @@ const TransactionTable = ({ data }) => {
                   : "transaction-item-hiddenRow--hidden"
               }
             >
-              <EditTransactionsForm data={item} />
+              <EditTransactionsForm
+                data={item}
+                idItemDeployed={idItemDeployed}
+                inputEditedId={inputEditedId}
+                setInputEditedId={setInputEditedId}
+              />
             </tr>
           </React.Fragment>
         ))}

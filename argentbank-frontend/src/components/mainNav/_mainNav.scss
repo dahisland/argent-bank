@@ -38,4 +38,14 @@
     }
     color: map-get($colors, grass);
   }
+
+  .main-nav-item--error {
+    text-decoration: none;
+    margin-right: 0.5rem;
+    &:hover {
+      text-decoration: underline;
+      color: map-get($colors, blood);
+    }
+    color: map-get($colors, blood);
+  }
 }

@@ -1,35 +1,84 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faSpellCheck } from "@fortawesome/free-solid-svg-icons";
 
-const EditTransactionsForm = ({ data }) => {
+const EditTransactionsForm = ({
+  data,
+  idItemDeployed,
+  inputEditedId,
+  setInputEditedId,
+}) => {
+  const formData = [
+    {
+      name: "type",
+      id: data.transactionId + "-type-input",
+      iconID: data.transactionId + "-type-icon",
+      label: "Transaction Type",
+      value: data.type,
+      editable: false,
+    },
+    {
+      name: "category",
+      id: data.transactionId + "-category-input",
+      iconID: data.transactionId + "-category-icon",
+      label: "Category",
+      value: data.category,
+      editable: true,
+    },
+    {
+      name: "notes",
+      id: data.transactionId + "-notes-input",
+      iconID: data.transactionId + "-notes-icon",
+      label: "Notes",
+      value: data.notes,
+      editable: true,
+    },
+  ];
+
+  function inputTransactionEdited(inputId) {
+    if (data.transactionId === idItemDeployed && inputEditedId !== inputId) {
+      setInputEditedId(inputId);
+    } else {
+      setInputEditedId("");
+    }
+  }
+
   return (
     <td colSpan={5}>
-      <form className="transactions-form-edit">
-        <label htmlFor="type">Transaction Type : </label>
-        <input
-          type="text"
-          name="type"
-          id="type"
-          defaultValue={data.type}
-          readOnly
-        />
-      </form>
-      <form className="transactions-form-edit">
-        <label htmlFor="category">Category : </label>
-        <input
-          type="text"
-          name="category"
-          id="category"
-          defaultValue={data.category}
-        />
-        <FontAwesomeIcon icon={faPen} />
-      </form>
-      <form className="transactions-form-edit">
-        <label htmlFor="notes">Notes : </label>
-        <input type="text" name="notes" id="notes" defaultValue={data.notes} />
-        <FontAwesomeIcon icon={faPen} />
-      </form>
+      {formData.map((obj) => (
+        <form className="transactions-form-edit">
+          <label htmlFor={obj.id}>{obj.label + " : "}</label>
+          <input
+            type="text"
+            name={obj.name}
+            id={obj.id}
+            className={
+              obj.editable && inputEditedId === obj.id
+                ? "input-transaction--edited"
+                : "input-transaction"
+            }
+            defaultValue={obj.value}
+            readOnly={obj.editable && inputEditedId === obj.id ? false : true}
+          />
+          {obj.editable ? (
+            inputEditedId === obj.id ? (
+              <FontAwesomeIcon
+                icon={faSpellCheck}
+                id={obj.iconID}
+                className="icon-transaction--edited"
+                onClick={() => inputTransactionEdited(obj.id)}
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faPen}
+                id={obj.iconID}
+                className="icon-transaction"
+                onClick={() => inputTransactionEdited(obj.id)}
+              />
+            )
+          ) : null}
+        </form>
+      ))}
     </td>
   );
 };

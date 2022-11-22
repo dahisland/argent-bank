@@ -5,6 +5,7 @@ import {
   faUserCircle,
   faUserPlus,
   faSignOutAlt,
+  faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { actionResetStore } from "../../app/actions/resetStore.action";
@@ -13,7 +14,9 @@ import NavLogo from "../navLogo/NavLogo";
 const MainNav = () => {
   const dispatch = useDispatch();
   const { connection } = useSelector((state) => state.login);
-  const { profileData } = useSelector((state) => state.profile);
+  const { profileData, profileStatus, profileMessage } = useSelector(
+    (state) => state.profile
+  );
 
   return (
     <nav className="main-nav">
@@ -46,16 +49,23 @@ const MainNav = () => {
         </div>
       ) : (
         <div className="main-nav-items">
-          <NavLink
-            className={(nav) =>
-              nav.isActive ? "main-nav-item--active" : "main-nav-item"
-            }
-            end
-            to="/profile"
-          >
-            <FontAwesomeIcon icon={faUserCircle} />
-            {" " + profileData.firstName}
-          </NavLink>
+          {profileStatus !== 200 ? (
+            <NavLink className={"main-nav-item--error"} end to="/profile">
+              <FontAwesomeIcon icon={faTriangleExclamation} />
+              {" " + profileMessage}
+            </NavLink>
+          ) : (
+            <NavLink
+              className={(nav) =>
+                nav.isActive ? "main-nav-item--active" : "main-nav-item"
+              }
+              end
+              to="/profile"
+            >
+              <FontAwesomeIcon icon={faUserCircle} />
+              {" " + profileData.firstName}
+            </NavLink>
+          )}
           <NavLink
             className="main-nav-item"
             end
