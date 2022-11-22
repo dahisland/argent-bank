@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faSpellCheck } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
 
 const EditTransactionsForm = ({
   data,
@@ -84,6 +85,13 @@ const EditTransactionsForm = ({
       ))}
     </td>
   );
+};
+
+EditTransactionsForm.propTypes = {
+  data: PropTypes.object,
+  idItemDeployed: PropTypes.string,
+  inputEditedId: PropTypes.string,
+  setInputEditedId: PropTypes.func,
 };
 
 export default EditTransactionsForm;

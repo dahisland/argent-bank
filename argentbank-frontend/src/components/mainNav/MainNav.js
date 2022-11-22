@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { actionResetStore } from "../../app/actions/resetStore.action";
+import { actionOffEditProfile } from "../../app/actions/editProfileStatus.action";
 import NavLogo from "../navLogo/NavLogo";
 
 const MainNav = () => {
@@ -61,6 +62,7 @@ const MainNav = () => {
               }
               end
               to="/profile"
+              onClick={() => actionOffEditProfile(dispatch)}
             >
               <FontAwesomeIcon icon={faUserCircle} />
               {" " + profileData.firstName}

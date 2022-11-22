@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import BtnTransaction from "../btnTransaction/BtnTransaction";
+import PropTypes from "prop-types";
 
 const Accounts = ({ data }) => {
   const navigate = useNavigate();
@@ -18,6 +19,10 @@ const Accounts = ({ data }) => {
       </div>
     </section>
   );
+};
+
+Accounts.propTypes = {
+  data: PropTypes.object,
 };
 
 export default Accounts;

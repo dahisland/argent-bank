@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
 const BtnTransaction = ({ navTo }) => {
   const { profileIsEdited } = useSelector((state) => state.profile);
@@ -16,6 +17,10 @@ const BtnTransaction = ({ navTo }) => {
       View transactions
     </button>
   );
+};
+
+BtnTransaction.propTypes = {
+  navTo: PropTypes.func,
 };
 
 export default BtnTransaction;

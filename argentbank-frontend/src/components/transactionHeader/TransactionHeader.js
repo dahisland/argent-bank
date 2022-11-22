@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const TransactionHeader = ({ data }) => {
   return (
@@ -12,6 +13,10 @@ const TransactionHeader = ({ data }) => {
       </div>
     </header>
   );
+};
+
+TransactionHeader.propTypes = {
+  data: PropTypes.object,
 };
 
 export default TransactionHeader;

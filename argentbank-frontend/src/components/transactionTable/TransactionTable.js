@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import EditTransactionsForm from "../editTransactionsForm/EditTransactionsForm";
+import PropTypes from "prop-types";
 
 const TransactionTable = ({ data }) => {
   const [idItemDeployed, setIdItemDeployed] = useState("");
@@ -81,6 +82,10 @@ const TransactionTable = ({ data }) => {
       </tbody>
     </table>
   );
+};
+
+TransactionTable.propTypes = {
+  data: PropTypes.object,
 };
 
 export default TransactionTable;
