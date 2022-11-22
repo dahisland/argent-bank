@@ -35,12 +35,13 @@ const TransactionTable = ({ data }) => {
               className={
                 idItemDeployed === item.transactionId
                   ? "transaction-item-row--deployed"
-                  : "transaction-item-row"
+                  : "transaction-item-row--undeployed"
               }
             >
               <td
                 onClick={() => handleDeploy(item.transactionId)}
-                className="icon-deploy"
+                className="icon-deploy transaction-item"
+                data-label=""
               >
                 {idItemDeployed === item.transactionId ? (
                   <FontAwesomeIcon icon={faChevronUp} />
@@ -48,10 +49,18 @@ const TransactionTable = ({ data }) => {
                   <FontAwesomeIcon icon={faChevronDown} />
                 )}
               </td>
-              <td>{item.createdAt}</td>
-              <td>{item.description}</td>
-              <td>${item.amount}</td>
-              <td>${item.balance}</td>
+              <td data-label="DATE" className="transaction-item">
+                {item.createdAt}
+              </td>
+              <td data-label="DESCRIPTION" className="transaction-item">
+                {item.description}
+              </td>
+              <td data-label="AMOUNT" className="transaction-item">
+                ${item.amount}
+              </td>
+              <td data-label="BALANCE" className="transaction-item">
+                ${item.balance}
+              </td>
             </tr>
             <tr
               className={

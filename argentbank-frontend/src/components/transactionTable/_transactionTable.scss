@@ -6,17 +6,33 @@
   margin-bottom: 3rem;
   padding-bottom: 2rem;
   border-collapse: collapse;
+  thead {
+    @include responsivePhones {
+      display: none;
+    }
+  }
   tbody {
     background-color: white;
   }
   th {
     padding: 0.5rem;
   }
+  .transaction-item {
+    @include responsivePhones {
+      display: block;
+      text-align: right;
+      padding: 0.5rem;
+      &:before {
+        content: attr(data-label);
+        float: left;
+      }
+    }
+  }
 }
 
 // rows deployments
 
-.transaction-item-row {
+.transaction-item--undeployed {
   td {
     border: 2px solid map-get($colors, ice);
     border-bottom: 2px solid map-get($colors, lightmouse);
@@ -46,9 +62,17 @@
   td {
     border: 2px solid lighten(map-get($colors, lightmouse), 17%);
     border-bottom: 3px solid map-get($colors, cassis);
+    @include responsivePhones {
+      padding: 0.5rem;
+    }
   }
 }
 
 .icon-deploy {
   cursor: pointer;
+  @include responsivePhones {
+    padding: 0.2rem;
+    background-color: lighten(map-get($colors, cassis), 25%);
+    color: map-get($colors, ice);
+  }
 }

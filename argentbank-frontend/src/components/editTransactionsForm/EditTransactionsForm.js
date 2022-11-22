@@ -45,8 +45,11 @@ const EditTransactionsForm = ({
 
   return (
     <td colSpan={5}>
-      {formData.map((obj) => (
-        <form className="transactions-form-edit">
+      {formData.map((obj, index) => (
+        <form
+          className="transactions-form-edit"
+          key={"transaction-form-" + data.transactionId + "-" + index}
+        >
           <label htmlFor={obj.id}>{obj.label + " : "}</label>
           <input
             type="text"
