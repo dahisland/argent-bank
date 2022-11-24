@@ -21,7 +21,7 @@ const Transactions = () => {
   useEffect(() => {
     if (connection !== "offline") {
       actionGetAccountData(dispatch);
-      actionGetTransactionsData(dispatch);
+      actionGetTransactionsData(dispatch, accountID);
       setAccountFiltered(
         accountData.find((item) => item.accountId === accountID)
       );
