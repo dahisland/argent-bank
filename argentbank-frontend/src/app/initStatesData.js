@@ -36,14 +36,13 @@ export const initStateSignup = {
 
 export const initStateAccount = {
   accountData: [],
-  accountId: "",
   accountStatus: null,
   accountMessage: "",
 };
 
 export const initStateTransactions = {
   transactionsData: [],
-  categoryId: "",
+  accountId: "",
   transactionsStatus: null,
   transactionsMessage: "",
 };

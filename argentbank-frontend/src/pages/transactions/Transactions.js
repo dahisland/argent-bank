@@ -11,7 +11,7 @@ import { actionGetTransactionsData } from "../../app/actions/getTransactionsData
 const Transactions = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let { userID } = useParams();
+  let { accountID } = useParams();
   const { connection } = useSelector((state) => state.login);
   const { accountData } = useSelector((state) => state.account);
   const { transactionsData } = useSelector((state) => state.transactions);
@@ -23,13 +23,13 @@ const Transactions = () => {
       actionGetAccountData(dispatch);
       actionGetTransactionsData(dispatch);
       setAccountFiltered(
-        accountData.find((item) => item.categoryId === userID)
+        accountData.find((item) => item.accountId === accountID)
       );
     } else {
       navigate("/");
     }
     // eslint-disable-next-line
-  }, [userID, accountData, dispatch]);
+  }, [accountID, accountData, dispatch, accountFiltered]);
 
   return (
     <div className="current-page">

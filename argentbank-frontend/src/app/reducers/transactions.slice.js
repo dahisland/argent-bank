@@ -7,13 +7,13 @@ export const transactionsSlice = createSlice({
   reducers: {
     getTransactionsData: (state, action) => {
       state.transactionsData = action.payload.transactionsData;
-      state.categoryId = action.payload.categoryId;
+      state.accountId = action.payload.accountId;
       state.transactionsStatus = action.payload.transactionsStatus;
       state.transactionsMessage = action.payload.transactionsMessage;
     },
     resetTransactionsData: (state, action) => {
       state.transactionsData = action.payload.transactionsData;
-      state.categoryId = action.payload.categoryId;
+      state.accountId = action.payload.accountId;
       state.transactionsStatus = action.payload.transactionsStatus;
       state.transactionsMessage = action.payload.transactionsMessage;
     },

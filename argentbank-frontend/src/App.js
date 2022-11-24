@@ -14,7 +14,10 @@ function App() {
         <Route exact path="/login" element={<Login />}></Route>
         <Route exact path="/signup" element={<SignUp />}></Route>
         <Route exact path="/profile" element={<Profile />}></Route>
-        <Route path="/transactions/:userID" element={<Transactions />}></Route>
+        <Route
+          path="/transactions/:accountID"
+          element={<Transactions />}
+        ></Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </BrowserRouter>

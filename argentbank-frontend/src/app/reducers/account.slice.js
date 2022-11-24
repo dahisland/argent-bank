@@ -7,13 +7,11 @@ export const accountSlice = createSlice({
   reducers: {
     getAccountData: (state, action) => {
       state.accountData = action.payload.accountData;
-      state.accountId = action.payload.accountId;
       state.accountStatus = action.payload.accountStatus;
       state.accountMessage = action.payload.accountMessage;
     },
     resetAccountData: (state, action) => {
       state.accountData = action.payload.accountData;
-      state.accountId = action.payload.accountId;
       state.accountStatus = action.payload.accountStatus;
       state.accountMessage = action.payload.accountMessage;
     },

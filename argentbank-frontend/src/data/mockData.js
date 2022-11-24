@@ -2,25 +2,24 @@ export const userAccountData = {
   status: 200,
   message: "Successfully got user account data",
   body: {
-    accountId: "userAccount",
     accountData: [
       {
         title: "Argent Bank Checking (x8349)",
         amount: "$2,082.79",
         description: "Available Balance",
-        categoryId: "checking",
+        accountId: "checking",
       },
       {
         title: "Argent Bank Savings (x6712)",
         amount: "$10,928.42",
         description: "Available Balance",
-        categoryId: "savings",
+        accountId: "savings",
       },
       {
         title: "Argent Bank Credit Card (x8349)",
         amount: "$184.30",
         description: "Current Balance",
-        categoryId: "credit-card",
+        accountId: "credit-card",
       },
     ],
   },
@@ -30,7 +29,7 @@ export const userTransactionsData = {
   status: 200,
   message: "Successfully got account transactions checking data",
   body: {
-    categoryId: "checking",
+    accountId: "checking",
     transactions: [
       {
         createdAt: "June 20th, 2020",

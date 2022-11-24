@@ -11,7 +11,6 @@
     @include responsivePhones {
       display: block;
       font-weight: bold;
-      padding-left: 0.5rem;
       margin: 0.4rem 0rem;
     }
   }
@@ -19,11 +18,13 @@
     border: none;
     padding: 0.2rem 0.5rem;
     margin-right: 0.5rem;
+    margin-bottom: 0.8rem;
     @include fontAvenir;
     font-size: 1rem;
     width: 140px;
     @include responsivePhones {
       outline: 1px dashed lighten(map-get($colors, cassis), 25%);
+      width: 170px;
     }
   }
 }
@@ -56,4 +57,11 @@
 .icon-transaction--edited {
   cursor: pointer;
   color: map-get($colors, grass);
+}
+
+.transaction-submit-button {
+  border: none;
+  cursor: pointer;
+  font-size: map-get($sizes, base);
+  background-color: lighten(map-get($colors, lightmouse), 17%);
 }

@@ -1,60 +1,69 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faSpellCheck } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
 const EditTransactionsForm = ({
-  data,
-  idItemDeployed,
+  transactionData,
   inputEditedId,
   setInputEditedId,
 }) => {
+  const { register, handleSubmit } = useForm();
+
   const formData = [
     {
       name: "type",
-      id: data.transactionId + "-type-input",
-      iconID: data.transactionId + "-type-icon",
+      id: transactionData.transactionId + "-type-input",
+      iconID: transactionData.transactionId + "-type-icon",
       label: "Transaction Type",
-      value: data.type,
+      value: transactionData.type,
       editable: false,
     },
     {
       name: "category",
-      id: data.transactionId + "-category-input",
-      iconID: data.transactionId + "-category-icon",
+      id: transactionData.transactionId + "-category-input",
+      iconID: transactionData.transactionId + "-category-icon",
       label: "Category",
-      value: data.category,
+      value: transactionData.category,
       editable: true,
     },
     {
       name: "notes",
-      id: data.transactionId + "-notes-input",
-      iconID: data.transactionId + "-notes-icon",
+      id: transactionData.transactionId + "-notes-input",
+      iconID: transactionData.transactionId + "-notes-icon",
       label: "Notes",
-      value: data.notes,
+      value: transactionData.notes,
       editable: true,
     },
   ];
 
-  function inputTransactionEdited(inputId) {
-    if (data.transactionId === idItemDeployed && inputEditedId !== inputId) {
-      setInputEditedId(inputId);
-    } else {
-      setInputEditedId("");
-    }
+  async function submitUpdateTransactionsForm(data) {
+    const dataFormatted = {
+      transactionId: transactionData.transactionId,
+      category: data.category,
+      notes: data.notes,
+    };
+    console.log(dataFormatted);
+    setInputEditedId("");
   }
 
   return (
-    <td colSpan={5}>
+    <form
+      className="transactions-form-edit"
+      onSubmit={handleSubmit(submitUpdateTransactionsForm)}
+    >
       {formData.map((obj, index) => (
-        <form
-          className="transactions-form-edit"
-          key={"transaction-form-" + data.transactionId + "-" + index}
+        <React.Fragment
+          key={
+            "transaction-form-" + transactionData.transactionId + "-" + index
+          }
         >
           <label htmlFor={obj.id}>{obj.label + " : "}</label>
           <input
             type="text"
             name={obj.name}
+            {...register(obj.name)}
             id={obj.id}
             className={
               obj.editable && inputEditedId === obj.id
@@ -66,24 +75,26 @@ const EditTransactionsForm = ({
           />
           {obj.editable ? (
             inputEditedId === obj.id ? (
-              <FontAwesomeIcon
-                icon={faSpellCheck}
-                id={obj.iconID}
-                className="icon-transaction--edited"
-                onClick={() => inputTransactionEdited(obj.id)}
-              />
+              <button type="submit" className="transaction-submit-button">
+                <FontAwesomeIcon
+                  icon={faSpellCheck}
+                  id={obj.iconID}
+                  className="icon-transaction--edited"
+                />
+              </button>
             ) : (
               <FontAwesomeIcon
                 icon={faPen}
                 id={obj.iconID}
                 className="icon-transaction"
-                onClick={() => inputTransactionEdited(obj.id)}
+                onClick={() => setInputEditedId(obj.id)}
               />
             )
           ) : null}
-        </form>
+          <br />
+        </React.Fragment>
       ))}
-    </td>
+    </form>
   );
 };
 

@@ -70,12 +70,13 @@ const TransactionTable = ({ data }) => {
                   : "transaction-item-hiddenRow--hidden"
               }
             >
-              <EditTransactionsForm
-                data={item}
-                idItemDeployed={idItemDeployed}
-                inputEditedId={inputEditedId}
-                setInputEditedId={setInputEditedId}
-              />
+              <td colSpan={5}>
+                <EditTransactionsForm
+                  transactionData={item}
+                  inputEditedId={inputEditedId}
+                  setInputEditedId={setInputEditedId}
+                />
+              </td>
             </tr>
           </React.Fragment>
         ))}
@@ -85,7 +86,7 @@ const TransactionTable = ({ data }) => {
 };
 
 TransactionTable.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
 };
 
 export default TransactionTable;

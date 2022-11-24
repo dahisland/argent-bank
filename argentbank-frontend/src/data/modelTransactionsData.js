@@ -1,14 +1,14 @@
 export class modelTransactionsData {
   constructor(data) {
     this.transactionsData = data.body.transactions;
-    this.categoryId = data.body.categoryId;
+    this.accountId = data.body.accountId;
     this.status = data.status;
     this.message = data.message;
   }
   formatAccountData() {
     return {
       transactionsData: this.transactionsData,
-      categoryId: this.categoryId,
+      accountId: this.accountId,
       transactionsStatus: this.status,
       transactionsMessage: this.message,
     };

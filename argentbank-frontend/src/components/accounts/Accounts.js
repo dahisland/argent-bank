@@ -14,7 +14,7 @@ const Accounts = ({ data }) => {
       </div>
       <div className="account-content-wrapper cta">
         <BtnTransaction
-          navTo={() => navigate("/transactions/" + data.categoryId)}
+          navTo={() => navigate("/transactions/" + data.accountId)}
         />
       </div>
     </section>
