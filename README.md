@@ -26,7 +26,7 @@
 
 - PHASE 2 :
 
-  A <a href="./swagger.yml">swagger</a> document have been written to document the backend endpoints and models datas needed to implement account and transactions api requests.
+  A [./swagger.yml](./swagger.yml) document have been written to document the backend endpoints and models datas needed to implement account and transactions api requests.
 
 ## TECHNOLOGIES
 
@@ -77,11 +77,14 @@ Your server should now be running at http://localhost:3001 and you will now have
 
 To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs
 
-Static HTML and CSS has been created for most of the site and is located in: `./ArgentBank-backend/designs`.
+Static HTML and CSS has been created for most of the site and is located in :
+[./ArgentBank-backend/designs](./ArgentBank-backend/designs).
 
-For some of the dynamic features, like toggling user editing, there is a mock-up for it in `./ArgentBank-backend/designs/wireframes/edit-user-name.png`.
+For some of the dynamic features, like toggling user editing, there is a mock-up for it in :
+[./ArgentBank-backend/designs/wireframes/edit-user-name.png](./ArgentBank-backend/designs/wireframes/edit-user-name.png).
 
-And for the API model that you will be proposing for transactitons, the wireframe can be found in `./ArgentBank-backend/designs/wireframes/transactions.png`.
+And for the API model that you will be proposing for transactitons, the wireframe can be found in :
+[./ArgentBank-backend/designs/wireframes/transactions.png](./ArgentBank-backend/designs/wireframes/transactions.png).
 
 ### \* STEP 2 : RUN FRONTEND
 
@@ -89,6 +92,6 @@ And for the API model that you will be proposing for transactitons, the wirefram
 - Use the `npm install` command to install dependencies.
 - Use the `npm start` command to run the project localy on your browser.
 
-Local url by default is : `http://localhost:3000/`.
+Local url by default is : http://localhost:3000/ .
 
-You can consult the jsdoc by using live-server on the `./argentbank-frontend/jsdoc/index.html` file.
+You can consult the jsdoc by using live-server on the [./argentbank-frontend/jsdoc/index.html](./argentbank-frontend/jsdoc/index.html) file.
