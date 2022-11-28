@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/editTransactionsForm/EditTransactionsForm.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/editTransactionsForm/EditTransactionsForm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { useForm } from "react-hook-form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faSpellCheck } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
+
+/**
+ * Component React displaying form to edit and update transaction's data (category and notes)
+ * @component
+ */
+const EditTransactionsForm = ({
+  transactionData,
+  inputEditedId,
+  setInputEditedId,
+}) => {
+  const { register, handleSubmit } = useForm();
+
+  /**
+   * Data used for the input default values and labels in the form "edit transactions data"
+   */
+  const formData = [
+    {
+      name: "type",
+      id: transactionData.transactionId + "-type-input",
+      iconID: transactionData.transactionId + "-type-icon",
+      label: "Transaction Type",
+      value: transactionData.type,
+      editable: false,
+    },
+    {
+      name: "category",
+      id: transactionData.transactionId + "-category-input",
+      iconID: transactionData.transactionId + "-category-icon",
+      label: "Category",
+      value: transactionData.category,
+      editable: true,
+    },
+    {
+      name: "notes",
+      id: transactionData.transactionId + "-notes-input",
+      iconID: transactionData.transactionId + "-notes-icon",
+      label: "Notes",
+      value: transactionData.notes,
+      editable: true,
+    },
+  ];
+
+  /**
+   * Function on form submit to action update transactions data with data collected
+   * @param {object} data - Data collected from useForm()
+   * @async
+   */
+  async function submitUpdateTransactionsForm(data) {
+    const dataFormatted = {
+      transactionId: transactionData.transactionId,
+      category: data.category,
+      notes: data.notes,
+    };
+    console.log(dataFormatted);
+    setInputEditedId("");
+  }
+
+  return (
+    &lt;form
+      className="transactions-form-edit"
+      onSubmit={handleSubmit(submitUpdateTransactionsForm)}
+    >
+      {formData.map((obj, index) => (
+        &lt;React.Fragment
+          key={
+            "transaction-form-" + transactionData.transactionId + "-" + index
+          }
+        >
+          &lt;label htmlFor={obj.id}>{obj.label + " : "}&lt;/label>
+          &lt;input
+            type="text"
+            name={obj.name}
+            {...register(obj.name)}
+            id={obj.id}
+            className={
+              obj.editable &amp;&amp; inputEditedId === obj.id
+                ? "input-transaction--edited"
+                : "input-transaction"
+            }
+            defaultValue={obj.value}
+            readOnly={obj.editable &amp;&amp; inputEditedId === obj.id ? false : true}
+          />
+          {obj.editable ? (
+            inputEditedId === obj.id ? (
+              &lt;button type="submit" className="transaction-submit-button">
+                &lt;FontAwesomeIcon
+                  icon={faSpellCheck}
+                  id={obj.iconID}
+                  className="icon-transaction--edited"
+                />
+              &lt;/button>
+            ) : (
+              &lt;FontAwesomeIcon
+                icon={faPen}
+                id={obj.iconID}
+                className="icon-transaction"
+                onClick={() => setInputEditedId(obj.id)}
+              />
+            )
+          ) : null}
+          &lt;br />
+        &lt;/React.Fragment>
+      ))}
+    &lt;/form>
+  );
+};
+
+EditTransactionsForm.propTypes = {
+  data: PropTypes.object,
+  idItemDeployed: PropTypes.string,
+  inputEditedId: PropTypes.string,
+  setInputEditedId: PropTypes.func,
+};
+
+export default EditTransactionsForm;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="modelAccountData.html">modelAccountData</a></li><li><a href="modelLoginData.html">modelLoginData</a></li><li><a href="modelProfileData.html">modelProfileData</a></li><li><a href="modelSignupData.html">modelSignupData</a></li><li><a href="modelTransactionsData.html">modelTransactionsData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Accounts">Accounts</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#BtnTransaction">BtnTransaction</a></li><li><a href="global.html#EditProfileForm">EditProfileForm</a></li><li><a href="global.html#EditTransactionsForm">EditTransactionsForm</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#Hero">Hero</a></li><li><a href="global.html#Homepage">Homepage</a></li><li><a href="global.html#HomepageFeatures">HomepageFeatures</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#MainNav">MainNav</a></li><li><a href="global.html#NavLogo">NavLogo</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#SignInForm">SignInForm</a></li><li><a href="global.html#SignUp">SignUp</a></li><li><a href="global.html#SignUpForm">SignUpForm</a></li><li><a href="global.html#TransactionHeader">TransactionHeader</a></li><li><a href="global.html#TransactionTable">TransactionTable</a></li><li><a href="global.html#Transactions">Transactions</a></li><li><a href="global.html#WelcomeHeader">WelcomeHeader</a></li><li><a href="global.html#accountSlice">accountSlice</a></li><li><a href="global.html#actionGetAccountData">actionGetAccountData</a></li><li><a href="global.html#actionGetLoginData">actionGetLoginData</a></li><li><a href="global.html#actionGetProfileData">actionGetProfileData</a></li><li><a href="global.html#actionGetSignupData">actionGetSignupData</a></li><li><a href="global.html#actionGetTransactionsData">actionGetTransactionsData</a></li><li><a href="global.html#actionLoginOffline">actionLoginOffline</a></li><li><a href="global.html#actionLoginOnline">actionLoginOnline</a></li><li><a href="global.html#actionLoginPending">actionLoginPending</a></li><li><a href="global.html#actionOffEditProfile">actionOffEditProfile</a></li><li><a href="global.html#actionOnEditProfile">actionOnEditProfile</a></li><li><a href="global.html#actionResetSignupStore">actionResetSignupStore</a></li><li><a href="global.html#actionResetStore">actionResetStore</a></li><li><a href="global.html#actionUpdateProfileData">actionUpdateProfileData</a></li><li><a href="global.html#actionUpdateProfileMessage">actionUpdateProfileMessage</a></li><li><a href="global.html#initStateAccount">initStateAccount</a></li><li><a href="global.html#initStateLogin">initStateLogin</a></li><li><a href="global.html#initStateProfile">initStateProfile</a></li><li><a href="global.html#initStateSignup">initStateSignup</a></li><li><a href="global.html#initStateTransactions">initStateTransactions</a></li><li><a href="global.html#loginSlice">loginSlice</a></li><li><a href="global.html#persistConfig">persistConfig</a></li><li><a href="global.html#persistedReducer">persistedReducer</a></li><li><a href="global.html#profileSlice">profileSlice</a></li><li><a href="global.html#rootReducers">rootReducers</a></li><li><a href="global.html#signupSlice">signupSlice</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#transactionsSlice">transactionsSlice</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Nov 28 2022 06:28:26 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
