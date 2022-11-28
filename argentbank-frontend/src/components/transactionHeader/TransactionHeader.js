@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * Component React displaying header for page transactions (containing account data)
+ * @component
+ */
 const TransactionHeader = ({ data }) => {
   return (
     <header className="transactionHeader">

@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initStateAccount } from "../initStatesData";
 
+/**
+ * Redux slice containing reducers for account data
+ */
 export const accountSlice = createSlice({
   name: "account",
   initialState: initStateAccount,

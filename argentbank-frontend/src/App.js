@@ -6,6 +6,10 @@ import Profile from "./pages/profile/Profile";
 import Transactions from "./pages/transactions/Transactions";
 import Error404 from "./pages/error404/Error404";
 
+/**
+ * Component React containing routes paths
+ * @component
+ */
 function App() {
   return (
     <BrowserRouter>

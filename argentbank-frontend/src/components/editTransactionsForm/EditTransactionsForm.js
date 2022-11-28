@@ -4,6 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faSpellCheck } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
+/**
+ * Component React displaying form to edit and update transaction's data (category and notes)
+ * @component
+ */
 const EditTransactionsForm = ({
   transactionData,
   inputEditedId,
@@ -11,6 +15,9 @@ const EditTransactionsForm = ({
 }) => {
   const { register, handleSubmit } = useForm();
 
+  /**
+   * Data used for the input default values and labels in the form "edit transactions data"
+   */
   const formData = [
     {
       name: "type",
@@ -38,6 +45,11 @@ const EditTransactionsForm = ({
     },
   ];
 
+  /**
+   * Function on form submit to action update transactions data with data collected
+   * @param {object} data - Data collected from useForm()
+   * @async
+   */
   async function submitUpdateTransactionsForm(data) {
     const dataFormatted = {
       transactionId: transactionData.transactionId,

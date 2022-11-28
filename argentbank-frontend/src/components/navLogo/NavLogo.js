@@ -4,6 +4,10 @@ import logo from "../../assets/argentBankLogo.png";
 import { actionResetStore } from "../../app/actions/resetStore.action";
 import { useDispatch, useSelector } from "react-redux";
 
+/**
+ * Component React displaying clickable logo
+ * @component
+ */
 const NavLogo = () => {
   const dispatch = useDispatch();
   const { connection } = useSelector((state) => state.login);

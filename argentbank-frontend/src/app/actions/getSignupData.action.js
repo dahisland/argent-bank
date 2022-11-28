@@ -3,6 +3,13 @@ import { baseApiURL, signupEndpoint } from "../../service/apiURL";
 import { modelSignupData } from "../../data/modelSignupData";
 import { getSignupData, rejectedSignupData } from "../reducers/signup.slice";
 
+/**
+ * Redux action calling a post api request to register a new user (signup)
+ * @param {object} submitData - Contains user data for api request
+ * @param {func} dispatch - Hook to update redux store
+ * @async
+ * @returns {object} - Object containing api response signup data or error data
+ */
 export const actionGetSignupData = async (submitData, dispatch) => {
   try {
     let response = await axios.post(baseApiURL + signupEndpoint, {

@@ -6,6 +6,10 @@ import { signInInputData } from "../../data/staticData";
 import { actionGetLoginData } from "../../app/actions/getLoginData.action";
 import { useDispatch, useSelector } from "react-redux";
 
+/**
+ * Component React displaying form login
+ * @component
+ */
 const SignInForm = () => {
   const { loginMessage, loginStatus } = useSelector((state) => state.login);
   const {
@@ -17,8 +21,12 @@ const SignInForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  function submitLoginForm(data) {
-    // Call api post request
+  /**
+   * Function on form submit to action login
+   * @param {object} data - Data collected from useForm()
+   * @async
+   */
+  async function submitLoginForm(data) {
     actionGetLoginData(data, dispatch, navigate);
   }
 

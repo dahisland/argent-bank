@@ -1,3 +1,8 @@
+/**
+ * Object containing initiale structure for data login (initState)
+ * @constant
+ * @type {object}
+ */
 export const initStateLogin = {
   loginData: {
     remember: false,
@@ -8,6 +13,11 @@ export const initStateLogin = {
   loginMessage: "",
 };
 
+/**
+ * Object containing initiale structure for data profile (initState)
+ * @constant
+ * @type {object}
+ */
 export const initStateProfile = {
   profileData: {
     createdAt: "",
@@ -21,6 +31,11 @@ export const initStateProfile = {
   profileMessage: "",
 };
 
+/**
+ * Object containing initiale structure for data signup (initState)
+ * @constant
+ * @type {object}
+ */
 export const initStateSignup = {
   signupData: {
     createdAt: "",
@@ -34,12 +49,22 @@ export const initStateSignup = {
   signupMessage: "",
 };
 
+/**
+ * Object containing initiale structure for data account (initState)
+ * @constant
+ * @type {object}
+ */
 export const initStateAccount = {
   accountData: [],
   accountStatus: null,
   accountMessage: "",
 };
 
+/**
+ * Object containing initiale structure for data transactions (initState)
+ * @constant
+ * @type {object}
+ */
 export const initStateTransactions = {
   transactionsData: [],
   accountId: "",

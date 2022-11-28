@@ -1,3 +1,7 @@
+/**
+ * Create an instance object for signup data response called by api.
+ * @class
+ */
 export class modelSignupData {
   constructor(signupData) {
     this.status = parseInt(signupData.status);
@@ -10,6 +14,10 @@ export class modelSignupData {
     this.updatedAt = String(signupData.body.updatedAt);
   }
 
+  /**
+   * Static method used to format signup data
+   * @returns {object} - Object containing signup data formatted
+   */
   formatSignupData() {
     return {
       signupData: {

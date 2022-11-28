@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initStateSignup } from "../initStatesData";
 
+/**
+ * Redux slice containing reducers for signup data
+ */
 export const signupSlice = createSlice({
   name: "signup",
   initialState: initStateSignup,

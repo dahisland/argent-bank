@@ -12,6 +12,10 @@ import {
   initStateTransactions,
 } from "../initStatesData";
 
+/**
+ * Redux action to reset all datas in redux store
+ * @param {func} dispatch - Hook to update redux store
+ */
 export function actionResetStore(dispatch) {
   dispatch(resetLoginData(initStateLogin));
   dispatch(resetProfileData(initStateProfile));

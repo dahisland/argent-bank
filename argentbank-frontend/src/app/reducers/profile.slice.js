@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initStateProfile } from "../initStatesData";
 
+/**
+ * Redux slice containing reducers for profile data
+ */
 export const profileSlice = createSlice({
   name: "profile",
   initialState: initStateProfile,

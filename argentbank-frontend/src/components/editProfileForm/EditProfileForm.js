@@ -5,6 +5,10 @@ import { actionOffEditProfile } from "../../app/actions/editProfileStatus.action
 import { actionUpdateProfileData } from "../../app/actions/updateProfileData.action";
 import { actionUpdateProfileMessage } from "../../app/actions/updateProfileMessage.action";
 
+/**
+ * Component React displaying form to edit and update user's profile firstname and lastname
+ * @component
+ */
 const EditProfileForm = () => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
@@ -14,11 +18,20 @@ const EditProfileForm = () => {
     (state) => state.profile
   );
 
+  /**
+   * Data used for the input default values in the form "edit profile data"
+   */
   const inputProfileData = [
     { id: "userFirstname", value: profileData.firstName },
     { id: "userLastname", value: profileData.lastName },
   ];
 
+  /**
+   * Function on form submit to action update profile data with data collected or action update submit message
+   * if no data need to be updated
+   * @param {object} data - Data collected from useForm()
+   * @async
+   */
   async function submitUpdateProfileForm(data) {
     if (
       data.userFirstname !== profileData.firstName ||
@@ -33,6 +46,9 @@ const EditProfileForm = () => {
     }
   }
 
+  /**
+   * Function on click upon "cancel" button to action update status profile edition and action reset profile message
+   */
   function cancelEditProfile(e) {
     e.preventDefault();
     actionOffEditProfile(dispatch);

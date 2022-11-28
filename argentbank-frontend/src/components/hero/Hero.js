@@ -1,6 +1,10 @@
 import React from "react";
 import { heroData } from "../../data/staticData";
 
+/**
+ * Component React displaying hero content for homepage
+ * @component
+ */
 const Hero = () => {
   return (
     <div className="hero">

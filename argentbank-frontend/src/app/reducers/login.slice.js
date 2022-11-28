@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initStateLogin } from "../initStatesData";
 
+/**
+ * Redux slice containing reducers for login data
+ */
 export const loginSlice = createSlice({
   name: "login",
   initialState: initStateLogin,

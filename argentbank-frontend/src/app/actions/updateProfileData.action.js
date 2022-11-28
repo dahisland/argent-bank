@@ -6,6 +6,13 @@ import {
 } from "../reducers/profile.slice";
 import { baseApiURL, profileEndpoint } from "../../service/apiURL";
 
+/**
+ * Redux action calling a put api request to update profile data
+ * @param {string} token - Token for api authorization
+ * @param {object} submitData - Contains new user data for api request
+ * @param {func} dispatch - Hook to update redux store
+ * @returns {object} - Object containing api response profile data or error data
+ */
 export const actionUpdateProfileData = (token, submitData, dispatch) => {
   return axios
     .put(

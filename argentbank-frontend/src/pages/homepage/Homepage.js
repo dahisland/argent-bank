@@ -4,6 +4,10 @@ import Hero from "../../components/hero/Hero";
 import HomepageFeatures from "../../components/homepageFeatures/HomepageFeatures";
 import Footer from "../../components/footer/Footer";
 
+/**
+ * Component React displaying Homepage
+ * @component
+ */
 const Homepage = () => {
   return (
     <div>

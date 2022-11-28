@@ -2,6 +2,11 @@ import iconChat from "../assets/icon-chat.png";
 import iconMoney from "../assets/icon-money.png";
 import iconSecurity from "../assets/icon-security.png";
 
+/**
+ * Javascript file containing static data used for application.
+ * @file
+ */
+
 export const heroData = {
   title: "Promoted Content",
   subtitles: ["No fees.", "No minimum deposit.", "High interest rates."],

@@ -3,6 +3,14 @@ import { modelLoginData } from "../../data/modelLoginData";
 import { getLoginData, rejectedLoginData } from "../reducers/login.slice";
 import { baseApiURL, loginEndpoint } from "../../service/apiURL";
 
+/**
+ * Redux action calling a post api request to login
+ * @param {object} submitData - Contains user email and password
+ * @param {func} dispatch - Hook to update redux store
+ * @param {func} navigate - Hook to navigate to profile page
+ * @async
+ * @returns {object} - Object containing token or error data
+ */
 export const actionGetLoginData = async (submitData, dispatch, navigate) => {
   try {
     let response = await axios.post(baseApiURL + loginEndpoint, {

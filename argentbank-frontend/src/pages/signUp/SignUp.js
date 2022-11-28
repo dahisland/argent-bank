@@ -7,6 +7,10 @@ import Footer from "../../components/footer/Footer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Component React displaying signup page
+ * @component
+ */
 const SignUp = () => {
   const navigate = useNavigate();
   const { connection } = useSelector((state) => state.login);

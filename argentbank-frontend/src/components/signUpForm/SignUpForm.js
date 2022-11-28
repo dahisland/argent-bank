@@ -7,6 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionGetSignupData } from "../../app/actions/getSignupData.action";
 import { actionResetSignupStore } from "../../app/actions/resetSignupStore.action";
 
+/**
+ * Component React displaying form to signup
+ * @component
+ */
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,10 +21,18 @@ const SignUpForm = () => {
     formState: { errors },
   } = useForm();
 
-  function submitSignupForm(data) {
-    // Call api post request
+  /**
+   * Function on form submit to action register new user (signup)
+   * @param {object} data - Data collected from useForm()
+   * @async
+   */
+  async function submitSignupForm(data) {
     actionGetSignupData(data, dispatch);
   }
+
+  /**
+   * Function to navigate to the login page when a new user has successfully been registered
+   */
   function navToSignInPage(e) {
     e.preventDefault();
     actionResetSignupStore(dispatch);

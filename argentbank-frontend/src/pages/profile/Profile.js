@@ -8,6 +8,10 @@ import Accounts from "../../components/accounts/Accounts";
 import { actionGetProfileData } from "../../app/actions/getProfileData.action";
 import { actionGetAccountData } from "../../app/actions/getAccountData.action";
 
+/**
+ * Component React displaying profile page
+ * @component
+ */
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

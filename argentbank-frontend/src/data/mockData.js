@@ -1,3 +1,9 @@
+/**
+ * Javascript file containing mock data for acount and transactions.
+ * This file is used until api endpoints aren't implemented to call these datas.
+ * @file
+ */
+
 export const userAccountData = {
   status: 200,
   message: "Successfully got user account data",

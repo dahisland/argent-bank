@@ -12,6 +12,10 @@ import { actionResetStore } from "../../app/actions/resetStore.action";
 import { actionOffEditProfile } from "../../app/actions/editProfileStatus.action";
 import NavLogo from "../navLogo/NavLogo";
 
+/**
+ * Component React displaying website navigation
+ * @component
+ */
 const MainNav = () => {
   const dispatch = useDispatch();
   const { connection } = useSelector((state) => state.login);

@@ -1,3 +1,7 @@
+/**
+ * Create an instance object for profile data response called by api.
+ * @class
+ */
 export class modelProfileData {
   constructor(profileData) {
     this.status = parseInt(profileData.status);
@@ -10,6 +14,10 @@ export class modelProfileData {
     this.updatedAt = String(profileData.body.updatedAt);
   }
 
+  /**
+   * Static method used to format profile data
+   * @returns {object} - Object containing profile data formatted
+   */
   formatProfileData() {
     return {
       profileData: {

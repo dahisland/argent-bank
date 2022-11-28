@@ -6,11 +6,19 @@ import { actionUpdateProfileMessage } from "../../app/actions/updateProfileMessa
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Component React displaying header for page profile (containing user firstname and lastname)
+ * @component
+ */
 const WelcomeHeader = () => {
   const dispatch = useDispatch();
   const { profileData, profileIsEdited, profileStatus, profileMessage } =
     useSelector((state) => state.profile);
 
+  /**
+   * Function to action update profile edition status on click
+   * When profile is edited, css is customized for some elements in the profile page
+   */
   function editProfile(e) {
     e.preventDefault();
     actionOnEditProfile(dispatch);

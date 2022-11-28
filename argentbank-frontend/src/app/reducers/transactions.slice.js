@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initStateTransactions } from "../initStatesData";
 
+/**
+ * Redux slice containing reducers for transactions data
+ */
 export const transactionsSlice = createSlice({
   name: "transactions",
   initialState: initStateTransactions,

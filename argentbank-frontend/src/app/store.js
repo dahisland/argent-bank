@@ -15,11 +15,17 @@ import {
   REGISTER,
 } from "redux-persist";
 
+/**
+ * Configuration for redux persist store
+ */
 const persistConfig = {
   key: "root",
   storage: storage,
 };
 
+/**
+ * combine all the reducers implemented in the store
+ */
 export const rootReducers = combineReducers({
   login: loginReducer,
   profile: profileReducer,
@@ -28,8 +34,14 @@ export const rootReducers = combineReducers({
   transactions: transactionsReducer,
 });
 
+/**
+ * Link the reducers to the redux persist store
+ */
 const persistedReducer = persistReducer(persistConfig, rootReducers);
 
+/**
+ * Configuration redux store
+ */
 const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>

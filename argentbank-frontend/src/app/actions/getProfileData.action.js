@@ -4,6 +4,13 @@ import { actionLoginOnline } from "./connectionStatus.action";
 import { getProfileData, rejectedProfileData } from "../reducers/profile.slice";
 import { baseApiURL, profileEndpoint } from "../../service/apiURL";
 
+/**
+ * Redux action calling a post api request to get profile data
+ * @param {string} token - Token for api authorization
+ * @param {func} dispatch - Hook to update redux store
+ * @async
+ * @returns {object} - Object containing profile data or error data
+ */
 export const actionGetProfileData = async (token, dispatch) => {
   try {
     let response = await axios.post(

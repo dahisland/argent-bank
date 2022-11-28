@@ -2,6 +2,10 @@ import React from "react";
 import MainNav from "../../components/mainNav/MainNav";
 import Footer from "../../components/footer/Footer";
 
+/**
+ * Component React displaying page Error 404
+ * @component
+ */
 const Error404 = () => {
   return (
     <div className="current-page">

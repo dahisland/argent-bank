@@ -4,10 +4,18 @@ import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import EditTransactionsForm from "../editTransactionsForm/EditTransactionsForm";
 import PropTypes from "prop-types";
 
+/**
+ * Component React displaying table containing transactions data for page transactions
+ * @component
+ */
 const TransactionTable = ({ data }) => {
   const [idItemDeployed, setIdItemDeployed] = useState("");
   const [inputEditedId, setInputEditedId] = useState("");
 
+  /**
+   * Function to deploy/undeploy more transactions data (editable data)
+   * @param {string} transactionId - Id of the transaction clicked
+   */
   function handleDeploy(transactionId) {
     if (idItemDeployed === transactionId) {
       setIdItemDeployed("");

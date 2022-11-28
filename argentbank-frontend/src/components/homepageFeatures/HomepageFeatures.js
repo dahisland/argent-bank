@@ -1,6 +1,10 @@
 import React from "react";
 import { featuresData } from "../../data/staticData";
 
+/**
+ * Component React displaying features content for homepage
+ * @component
+ */
 const HomepageFeatures = () => {
   return (
     <section className="features">

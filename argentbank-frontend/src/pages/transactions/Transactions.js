@@ -8,6 +8,10 @@ import TransactionTable from "../../components/transactionTable/TransactionTable
 import { actionGetAccountData } from "../../app/actions/getAccountData.action";
 import { actionGetTransactionsData } from "../../app/actions/getTransactionsData.action";
 
+/**
+ * Component React displaying transactions page
+ * @component
+ */
 const Transactions = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
