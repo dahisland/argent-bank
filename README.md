@@ -1,15 +1,18 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
 [![forthebadge](./readme-assets/made-with-react.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
+[![forthebadge](./readme-assets/uses-redux.svg)](https://forthebadge.com)
+
 <br/>
 
 <div id="header" align="left">
-  <img src="./sportsee/src/assets/logo.svg" width="200"/>
+  <img src="./argentbank-frontend/src/assets/argentBankLogo.png" width="200"/>
 </div>
 
 # ARGENT BANK :
 
 - PHASE 1 :
+
   Implementation of an user Authentification system for the bank ARGENT BANK.
 
   The app can :
@@ -22,7 +25,8 @@
   - Disconnect a logged user
 
 - PHASE 2 :
-  A `./swagger.yml` document have been written to document the backend endpoints and models datas needed to implement account and transactions api requests.
+
+  A <a href="./swagger.yml">swagger</a> document have been written to document the backend endpoints and models datas needed to implement account and transactions api requests.
 
 ## TECHNOLOGIES
 
