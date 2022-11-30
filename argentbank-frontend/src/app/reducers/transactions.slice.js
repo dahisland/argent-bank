@@ -16,7 +16,6 @@ export const transactionsSlice = createSlice({
     },
     resetTransactionsData: (state, action) => {
       state.transactionsData = action.payload.transactionsData;
-      state.accountId = action.payload.accountId;
       state.transactionsStatus = action.payload.transactionsStatus;
       state.transactionsMessage = action.payload.transactionsMessage;
     },

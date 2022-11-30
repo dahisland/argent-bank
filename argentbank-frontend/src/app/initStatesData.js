@@ -67,7 +67,6 @@ export const initStateAccount = {
  */
 export const initStateTransactions = {
   transactionsData: [],
-  accountId: "",
   transactionsStatus: null,
   transactionsMessage: "",
 };

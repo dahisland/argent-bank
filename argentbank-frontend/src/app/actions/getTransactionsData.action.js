@@ -1,10 +1,6 @@
 import { modelTransactionsData } from "../../data/modelTransactionsData";
 import { getTransactionsData } from "../reducers/transactions.slice";
-import {
-  userTransactionsCheckingData,
-  userTransactionsSavingsData,
-  userTransactionsCreditCardData,
-} from "../../data/mockData";
+import { userTransactionsData } from "../../data/mockData";
 
 /**
  * Redux action to get transactions data
@@ -13,28 +9,19 @@ import {
  * @returns {object} - Object containing transactions data
  */
 export function actionGetTransactionsData(dispatch, accountID) {
-  if (accountID === "checking") {
-    const transactionsData = new modelTransactionsData(
-      userTransactionsCheckingData
-    );
-    const transactionsDataFormatted = transactionsData.formatTransactionsData();
-    dispatch(getTransactionsData(transactionsDataFormatted));
-    return transactionsDataFormatted;
-  }
-  if (accountID === "savings") {
-    const transactionsData = new modelTransactionsData(
-      userTransactionsSavingsData
-    );
-    const transactionsDataFormatted = transactionsData.formatTransactionsData();
-    dispatch(getTransactionsData(transactionsDataFormatted));
-    return transactionsDataFormatted;
-  }
-  if (accountID === "credit-card") {
-    const transactionsData = new modelTransactionsData(
-      userTransactionsCreditCardData
-    );
-    const transactionsDataFormatted = transactionsData.formatTransactionsData();
-    dispatch(getTransactionsData(transactionsDataFormatted));
-    return transactionsDataFormatted;
-  }
+  const arrayTransactions = userTransactionsData.body.transactions;
+  const userTransactionsDataFiltered = {
+    ...userTransactionsData,
+    body: {
+      transactions: arrayTransactions.filter(
+        (item) => item.accountId === accountID
+      ),
+    },
+  };
+  const transactionsData = new modelTransactionsData(
+    userTransactionsDataFiltered
+  );
+  const transactionsDataFormatted = transactionsData.formatTransactionsData();
+  dispatch(getTransactionsData(transactionsDataFormatted));
+  return transactionsDataFormatted;
 }

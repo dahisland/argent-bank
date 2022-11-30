@@ -31,11 +31,10 @@ export const userAccountData = {
   },
 };
 
-export const userTransactionsCheckingData = {
+export const userTransactionsData = {
   status: 200,
-  message: "Successfully got account transactions checking data",
+  message: "Successfully got account transactions data",
   body: {
-    accountId: "checking",
     transactions: [
       {
         createdAt: "June 20th, 2020",
@@ -47,6 +46,7 @@ export const userTransactionsCheckingData = {
         notes: "",
         transactionId: "checking1",
         updatedAt: "",
+        accountId: "checking",
       },
       {
         createdAt: "June 20th, 2020",
@@ -58,6 +58,7 @@ export const userTransactionsCheckingData = {
         notes: "Waiting for refund",
         transactionId: "checking2",
         updatedAt: "",
+        accountId: "checking",
       },
       {
         createdAt: "June 20th, 2020",
@@ -69,6 +70,7 @@ export const userTransactionsCheckingData = {
         notes: "",
         transactionId: "checking3",
         updatedAt: "",
+        accountId: "checking",
       },
       {
         createdAt: "June 20th, 2020",
@@ -80,6 +82,7 @@ export const userTransactionsCheckingData = {
         notes: "",
         transactionId: "checking4",
         updatedAt: "",
+        accountId: "checking",
       },
       {
         createdAt: "June 20th, 2020",
@@ -91,6 +94,7 @@ export const userTransactionsCheckingData = {
         notes: "",
         transactionId: "checking5",
         updatedAt: "",
+        accountId: "checking",
       },
       {
         createdAt: "June 20th, 2020",
@@ -102,17 +106,8 @@ export const userTransactionsCheckingData = {
         notes: "",
         transactionId: "checking6",
         updatedAt: "",
+        accountId: "checking",
       },
-    ],
-  },
-};
-
-export const userTransactionsSavingsData = {
-  status: 200,
-  message: "Successfully got account transactions checking data",
-  body: {
-    accountId: "savings",
-    transactions: [
       {
         createdAt: "June 20th, 2020",
         description: "Golden Sun Bakery",
@@ -123,6 +118,7 @@ export const userTransactionsSavingsData = {
         notes: "",
         transactionId: "savings1",
         updatedAt: "",
+        accountId: "savings",
       },
       {
         createdAt: "June 20th, 2020",
@@ -134,6 +130,7 @@ export const userTransactionsSavingsData = {
         notes: "Waiting for refund",
         transactionId: "savings2",
         updatedAt: "",
+        accountId: "savings",
       },
       {
         createdAt: "June 20th, 2020",
@@ -145,6 +142,7 @@ export const userTransactionsSavingsData = {
         notes: "",
         transactionId: "savings3",
         updatedAt: "",
+        accountId: "savings",
       },
       {
         createdAt: "June 20th, 2020",
@@ -156,6 +154,7 @@ export const userTransactionsSavingsData = {
         notes: "",
         transactionId: "savings4",
         updatedAt: "",
+        accountId: "savings",
       },
       {
         createdAt: "June 20th, 2020",
@@ -167,6 +166,7 @@ export const userTransactionsSavingsData = {
         notes: "",
         transactionId: "savings5",
         updatedAt: "",
+        accountId: "savings",
       },
       {
         createdAt: "June 20th, 2020",
@@ -178,17 +178,8 @@ export const userTransactionsSavingsData = {
         notes: "",
         transactionId: "savings6",
         updatedAt: "",
+        accountId: "savings",
       },
-    ],
-  },
-};
-
-export const userTransactionsCreditCardData = {
-  status: 200,
-  message: "Successfully got account transactions checking data",
-  body: {
-    accountId: "credit-card",
-    transactions: [
       {
         createdAt: "June 20th, 2020",
         description: "Golden Sun Bakery",
@@ -199,6 +190,7 @@ export const userTransactionsCreditCardData = {
         notes: "",
         transactionId: "credit-card1",
         updatedAt: "",
+        accountId: "credit-card",
       },
       {
         createdAt: "June 20th, 2020",
@@ -210,6 +202,7 @@ export const userTransactionsCreditCardData = {
         notes: "Waiting for refund",
         transactionId: "credit-card2",
         updatedAt: "",
+        accountId: "credit-card",
       },
       {
         createdAt: "June 20th, 2020",
@@ -221,6 +214,7 @@ export const userTransactionsCreditCardData = {
         notes: "",
         transactionId: "credit-card3",
         updatedAt: "",
+        accountId: "credit-card",
       },
       {
         createdAt: "June 20th, 2020",
@@ -232,6 +226,7 @@ export const userTransactionsCreditCardData = {
         notes: "",
         transactionId: "credit-card4",
         updatedAt: "",
+        accountId: "credit-card",
       },
       {
         createdAt: "June 20th, 2020",
@@ -243,6 +238,7 @@ export const userTransactionsCreditCardData = {
         notes: "",
         transactionId: "credit-card5",
         updatedAt: "",
+        accountId: "credit-card",
       },
       {
         createdAt: "June 20th, 2020",
@@ -254,6 +250,7 @@ export const userTransactionsCreditCardData = {
         notes: "",
         transactionId: "credit-card6",
         updatedAt: "",
+        accountId: "credit-card",
       },
     ],
   },
