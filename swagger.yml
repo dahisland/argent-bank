@@ -165,10 +165,12 @@ paths:
           name: category
           in: query
           description: Content to update for transaction's data category
+          required: true
         - type: string
           name: notes
           in: query
           description: Content to update for transaction's data notes
+          required: true
 
       produces:
         - application/json
