@@ -43,7 +43,7 @@ paths:
         - Bearer: []
       tags:
         - User Module
-      summary: Get all transactions of an user's account
+      summary: Get all current month transactions for an user's account
       description: Return an object containing an array with all transactions data objects
       operationId: getAllTransactions
       parameters:
@@ -72,7 +72,7 @@ paths:
         - Bearer: []
       tags:
         - User Module
-      summary: Find transactions for an user account's category by using account Id
+      summary: Find current month transactions for an user account's category by using account Id
       description: Return an object containing an array with all transactions data objects filtered
       operationId: findTransactionsByAccountId
       parameters:
