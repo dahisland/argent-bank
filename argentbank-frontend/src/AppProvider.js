@@ -4,7 +4,7 @@ import App from "./App";
 export const ServerContext = createContext(null);
 
 const AppProvider = () => {
-  // Pass it to false to switch between server to mock data
+  // Pass it to true to switch between mock data to API data
   const serverIsOn = false;
   return (
     <ServerContext.Provider value={serverIsOn}>
