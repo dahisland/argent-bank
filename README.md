@@ -97,3 +97,7 @@ IMPORTANT: To use API data in the front project instead of mock data, you have t
 Local url by default is : http://localhost:3000/ .
 
 You can consult the jsdoc by using live-server on the [jsdoc index.html](./argentbank-frontend/jsdoc/index.html) file.
+
+## \* GIT PAGES
+
+A version using mock data is available [here](https://dahisland.github.io/argent-bank/).
