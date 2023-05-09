@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { actionOffEditProfile } from "../../app/actions/editProfileStatus.action";
-import { actionUpdateProfileData } from "../../app/actions/updateProfileData.action";
+import {
+  actionUpdateProfileData,
+  actionUpdateProfileMockData,
+} from "../../app/actions/updateProfileData.action";
 import { actionUpdateProfileMessage } from "../../app/actions/updateProfileMessage.action";
+import { ServerContext } from "../../AppProvider";
 
 /**
  * Component React displaying form to edit and update user's profile firstname and lastname
  * @component
  */
 const EditProfileForm = () => {
+  const serverIsOn = useContext(ServerContext);
+
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
@@ -37,7 +43,9 @@ const EditProfileForm = () => {
       data.userFirstname !== profileData.firstName ||
       data.userLastname !== profileData.lastName
     ) {
-      actionUpdateProfileData(loginData.token, data, dispatch);
+      serverIsOn
+        ? actionUpdateProfileData(loginData.token, data, dispatch)
+        : actionUpdateProfileMockData(profileData, data, dispatch);
     } else {
       actionUpdateProfileMessage(
         "User profile data is already updated",
@@ -74,7 +82,9 @@ const EditProfileForm = () => {
       </div>
       <p
         className={
-          profileStatus === 200 ? "edit-message--success" : "edit-message--fail"
+          profileStatus === 200 || profileStatus === 201
+            ? "edit-message--success"
+            : "edit-message--fail"
         }
       >
         {profileMessage}

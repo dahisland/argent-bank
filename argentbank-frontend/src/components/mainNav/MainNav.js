@@ -54,7 +54,7 @@ const MainNav = () => {
         </div>
       ) : (
         <div className="main-nav-items">
-          {profileStatus !== 200 ? (
+          {profileStatus !== 200 && profileStatus !== 201 ? (
             <NavLink className={"main-nav-item--error"} end to="/profile">
               <FontAwesomeIcon icon={faTriangleExclamation} />
               {" " + profileMessage}

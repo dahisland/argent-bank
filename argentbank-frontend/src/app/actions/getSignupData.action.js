@@ -44,3 +44,25 @@ export const actionGetSignupData = async (submitData, dispatch) => {
     }
   }
 };
+
+export const actionGetSignupMockData = (submitData, dispatch) => {
+  const actualDate = Date();
+  const response = {
+    status: 200,
+    message: "User successfully created",
+    body: {
+      _id: "id-" + submitData.lastname,
+      email: submitData.usermail,
+      password: submitData.userpassword,
+      firstName: submitData.firstname,
+      lastName: submitData.lastname,
+      createdAt: actualDate,
+      updatedAt: actualDate,
+      __v: 0,
+    },
+  };
+  const signupData = new modelSignupData(response);
+  const signupDataFormatted = signupData.formatSignupData();
+  dispatch(getSignupData(signupDataFormatted));
+  return signupDataFormatted;
+};

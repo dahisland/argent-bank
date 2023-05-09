@@ -30,7 +30,7 @@ const WelcomeHeader = () => {
       <h1>Welcome back</h1>
       {profileIsEdited ? (
         <EditProfileForm />
-      ) : profileStatus !== 200 ? (
+      ) : profileStatus !== 200 && profileStatus !== 201 ? (
         <div className="submit-message--error">
           <p>
             <FontAwesomeIcon icon={faTriangleExclamation} />

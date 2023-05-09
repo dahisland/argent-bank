@@ -56,3 +56,25 @@ export const actionUpdateProfileData = (token, submitData, dispatch) => {
       }
     });
 };
+export const actionUpdateProfileMockData = (
+  profileData,
+  submitData,
+  dispatch
+) => {
+  const response = {
+    status: 201,
+    message: "Successfully updated user profile data",
+    body: {
+      email: profileData.email,
+      firstName: submitData.userFirstname,
+      lastName: submitData.userLastname,
+      createdAt: profileData.createdAt,
+      updatedAt: profileData.updatedAt,
+      id: profileData.id,
+    },
+  };
+  const updatedProfileData = new modelProfileData(response);
+  const formattedUpdatedProfileData = updatedProfileData.formatProfileData();
+  dispatch(updateProfileData(formattedUpdatedProfileData));
+  return formattedUpdatedProfileData;
+};

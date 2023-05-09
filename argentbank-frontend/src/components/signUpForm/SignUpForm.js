@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useNavigate } from "react-router-dom";
 import { signUpInputData } from "../../data/staticData";
 import { useDispatch, useSelector } from "react-redux";
-import { actionGetSignupData } from "../../app/actions/getSignupData.action";
+import {
+  actionGetSignupData,
+  actionGetSignupMockData,
+} from "../../app/actions/getSignupData.action";
 import { actionResetSignupStore } from "../../app/actions/resetSignupStore.action";
+import { ServerContext } from "../../AppProvider";
 
 /**
  * Component React displaying form to signup
  * @component
  */
 const SignUpForm = () => {
+  const serverIsOn = useContext(ServerContext);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { signupMessage, signupStatus } = useSelector((state) => state.signup);
@@ -27,7 +32,9 @@ const SignUpForm = () => {
    * @async
    */
   async function submitSignupForm(data) {
-    actionGetSignupData(data, dispatch);
+    serverIsOn
+      ? actionGetSignupData(data, dispatch)
+      : actionGetSignupMockData(data, dispatch);
   }
 
   /**
@@ -49,7 +56,7 @@ const SignUpForm = () => {
             id={item.id}
             name={item.id}
             {...register(item.id, { required: "This field is required" })}
-            autoComplete={item.id}
+            autoComplete="off"
           />
           <p className="input-error-message">
             <ErrorMessage errors={errors} name={item.id} />

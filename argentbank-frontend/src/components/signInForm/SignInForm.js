@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useNavigate } from "react-router-dom";
 import { signInInputData } from "../../data/staticData";
-import { actionGetLoginData } from "../../app/actions/getLoginData.action";
+import {
+  actionGetLoginData,
+  actionGetLoginMockData,
+} from "../../app/actions/getLoginData.action";
 import { useDispatch, useSelector } from "react-redux";
+import { ServerContext } from "../../AppProvider";
 
 /**
  * Component React displaying form login
  * @component
  */
 const SignInForm = () => {
+  const serverIsOn = useContext(ServerContext);
   const { loginMessage, loginStatus } = useSelector((state) => state.login);
   const {
     register,
@@ -27,7 +32,9 @@ const SignInForm = () => {
    * @async
    */
   async function submitLoginForm(data) {
-    actionGetLoginData(data, dispatch, navigate);
+    serverIsOn
+      ? actionGetLoginData(data, dispatch, navigate)
+      : actionGetLoginMockData(data, dispatch, navigate);
   }
 
   return (

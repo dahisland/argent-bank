@@ -1,4 +1,5 @@
 import axios from "axios";
+import { userData } from "../../data/mockData";
 import { modelLoginData } from "../../data/modelLoginData";
 import { getLoginData, rejectedLoginData } from "../reducers/login.slice";
 import { baseApiURL, loginEndpoint } from "../../service/apiURL";
@@ -42,6 +43,45 @@ export const actionGetLoginData = async (submitData, dispatch, navigate) => {
         })
       );
       return err;
+    }
+  }
+};
+
+export const actionGetLoginMockData = (submitData, dispatch, navigate) => {
+  const user = userData.find((el) => el.email === submitData.username);
+  if (user === undefined) {
+    const errorData = { status: 400, message: "Error: User not found!" };
+    dispatch(
+      rejectedLoginData({
+        loginStatus: errorData.status,
+        loginMessage: errorData.message,
+      })
+    );
+    return errorData;
+  } else {
+    if (user.password !== submitData.password) {
+      const errorData = {
+        status: 400,
+        message: "Error: Password is invalid",
+      };
+      dispatch(
+        rejectedLoginData({
+          loginStatus: errorData.status,
+          loginMessage: errorData.message,
+        })
+      );
+      return errorData;
+    } else {
+      const response = {
+        status: 200,
+        message: "User successfully logged in",
+        body: { token: user.token },
+      };
+      const loginData = new modelLoginData(response, submitData.rememberMe);
+      const loginDataFormatted = loginData.formatLoginData();
+      dispatch(getLoginData(loginDataFormatted));
+      navigate("/profile");
+      return loginDataFormatted;
     }
   }
 };

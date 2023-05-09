@@ -1,5 +1,6 @@
 import axios from "axios";
 import { modelProfileData } from "../../data/modelProfileData";
+import { userData } from "../../data/mockData";
 import { actionLoginOnline } from "./connectionStatus.action";
 import { getProfileData, rejectedProfileData } from "../reducers/profile.slice";
 import { baseApiURL, profileEndpoint } from "../../service/apiURL";
@@ -47,5 +48,39 @@ export const actionGetProfileData = async (token, dispatch) => {
       );
       return err;
     }
+  }
+};
+
+export const actionGetProfileMockData = (token, dispatch) => {
+  const user = userData.find((el) => el.token === token);
+  if (user !== undefined) {
+    const response = {
+      status: 200,
+      message: "Successfully got user profile data",
+      body: {
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+        id: user._id,
+      },
+    };
+    const profileData = new modelProfileData(response);
+    const profileDataFormatted = profileData.formatProfileData();
+    dispatch(getProfileData(profileDataFormatted));
+    actionLoginOnline(dispatch);
+    return profileDataFormatted;
+  } else {
+    const errorData = {
+      status: 401,
+      message: "Invalid token",
+    };
+    dispatch(
+      rejectedProfileData({
+        profileMessage: errorData.message,
+        profileStatus: errorData.status,
+      })
+    );
   }
 };
