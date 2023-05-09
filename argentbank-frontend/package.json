@@ -1,7 +1,8 @@
 {
-  "name": "argentbank-frontend",
+  "name": "argent-bank",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://dahisland.github.io/argent-bank",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
@@ -12,6 +13,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.1.3",
+    "gh-pages": "^5.0.0",
     "jsdoc": "^4.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -28,6 +30,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "jsdoc": "./node_modules/.bin/jsdoc -c jsdoc.json"

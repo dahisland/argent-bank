@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import Homepage from "./pages/homepage/Homepage";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/signUp/SignUp";
@@ -12,7 +12,7 @@ import Error404 from "./pages/error404/Error404";
  */
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route exact path="/" element={<Homepage />}></Route>
         <Route exact path="/login" element={<Login />}></Route>
@@ -24,7 +24,7 @@ function App() {
         ></Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
